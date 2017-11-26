@@ -2,8 +2,8 @@
 c = document.getElementById("canvas");
 
 // Maximize the width and height.
-c.width = window.innerWidth;
-c.height = window.innerHeight;
+c.width = $("#canvas-outfit").innerWidth;
+c.height = $("#canvas-outfit").innerHeight;
 
 // Get the 2d context globally.
 ctx = c.getContext("2d");
