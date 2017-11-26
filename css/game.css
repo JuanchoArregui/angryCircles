@@ -1,0 +1,54 @@
+body, canvas {
+  background-color: #000;
+  font-family: Calibri, Helvetica, Arial;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+#Controls {
+  left: 10px;
+  position: fixed;
+  z-index: 2;
+}
+
+ilabel {
+  background-color: black;
+  border: 1px solid white;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  color: white;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 1px 5px 2px 5px;
+  text-align: right;
+  width: 100px;
+}
+
+input {
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 0 5px 5px 0;
+  color: white;
+  margin-top: 10px;
+  padding: 3px 2px;
+  text-align: center;
+}
+
+#ColourBox {
+  width: 96px;
+}
+
+#resetButton {
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px 0;
+  padding: 3px 4px;
+}
+
+#resetButton:hover {
+  background-color: #060;
+}

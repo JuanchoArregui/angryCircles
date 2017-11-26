@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Angry Circles</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+  </head>
+
+  <body>
+  
+    <nav>
+        <div class="nav-bar">
+            <img class="nav-logo" src="./images/slack-logo.png" alt="slack_logo">
+            <h1>Angry Circles</h1>
+
+            <button class = "button-purple" type="button" name="button">GET STARTED</button>
+          
+            
+                <img class="menu-icon" src="./images/button_nav_toggle.png" alt="menu_icon">
+            
+            
+        </div>
+    </nav>
+
+    <div id="gravity-controls">
+      <a onclick="Reset();" id="resetButton">Reset Ball</a><br />
+      <ilabel>Radius:</ilabel><input id="RadiusBox" type="number" min=0 max=100 /><br />
+      <ilabel>Colour:</ilabel><input id="ColourBox" type="text" /><br />
+      <ilabel>Gravity:</ilabel><input id="GravityBox" type="number" min=0 max=100 /><br />
+      <ilabel>Bounce Rate:</ilabel><input id="BounceBox" type="number" min=0 max=100 /><br />
+      <ilabel>Friction:</ilabel><input id="FrictionBox" type="number" min=0 max=100 /><br />
+      <ilabel>X Position:</ilabel><input id="XPosBox" type="number" /><br />
+      <ilabel>Y Position:</ilabel><input id="YPosBox" type="number" /><br />
+      <ilabel>X Velocity:</ilabel><input id="XVelBox" type="number" /><br />
+      <ilabel>Y Velocity:</ilabel><input id="YVelBox" type="number" />
+    </div>
+
+    <div id="canvas-outfit">
+        <canvas id="canvas"></canvas>
+    </div>
+
+
+    <footer>
+        <div class="footer-main">
+          just for square heads
+        </div>
+    </footer>
+
+
+   
+
+
+    <script type="text/javascript" src="./js/angry.js"></script>
+    <script type="text/javascript" src="./js/game.js"></script>
+    <script type="text/javascript" src="./js/circle.js"></script>
+
+  </body>
+</html>
