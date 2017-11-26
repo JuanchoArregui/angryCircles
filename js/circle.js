@@ -1,14 +1,5 @@
-// Get the canvas.
-c = document.getElementById("canvas");
 
-// Maximize the width and height.
-c.width = $("#canvas-outfit").innerWidth;
-c.height = $("#canvas-outfit").innerHeight;
 
-// Get the 2d context globally.
-ctx = c.getContext("2d");
-
-frameRate = 60;
 
 // Create the ball.
 b = new Ball();

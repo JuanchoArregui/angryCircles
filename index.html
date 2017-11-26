@@ -11,20 +11,26 @@
 
   <body>
   
-    <nav class = "flex">
-        <div class="nav-bar">
-            <img class="nav-logo" src="./images/angry.png" alt="angry_circle">
-            <h1>Angry Circles</h1>
-
-            <button class = "button-purple" type="button" name="button">GET STARTED</button>
-          
-            
-                <img class="menu-icon" src="./images/button_nav_toggle.png" alt="menu_icon">
-            
-            
-        </div>
+    <nav class = "pink margin-Left nav-bar flexbox justify-left margin-Right">
+        <div>
+            <img src="./images/angry.png" alt="angry_circle">
+        </div> 
+        <div class = "yellow flexbox justify-justify">
+            <div class = " orange margin-Left">
+                <h1>Angry Circles</h1>
+            </div>
+            <div class = " orangered">
+                <button id = "button-play" class = "button-black" type="button" name="button">GET STARTED</button>
+            </div>
+            <div class = "red">
+              <img class="menu-icon" src="./images/button_nav_toggle.png" alt="menu_icon">
+            </div>  
+        </div>   
     </nav>
-    
+
+    <div id="canvas-outfit">
+    </div>
+
 
     <div id="gravity-controls">
       <a onclick="Reset();" id="resetButton">Reset Ball</a><br />
@@ -39,20 +45,16 @@
       <ilabel>Y Velocity:</ilabel><input id="YVelBox" type="number" />
     </div>
 
-    <div id="canvas-outfit">
-        <canvas id="canvas"></canvas>
-    </div>
 
-
-    <footer class="footer">
+    <footer class="footer flexbox">
         <div>
           just for square heads
         </div>
     </footer>
 
-
   
     <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="./js/canvas.js"></script>
     <script type="text/javascript" src="./js/angry.js"></script>
     <script type="text/javascript" src="./js/circle.js"></script>
 

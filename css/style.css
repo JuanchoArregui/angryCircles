@@ -1,9 +1,21 @@
 body, canvas {
-  background-color: rgb(255, 255, 255);
   font-family: Calibri, Helvetica, Arial;
   margin: 0;
-  overflow: hidden;
   padding: 0;
+}
+
+.yellow {
+  background-color: yellow;
+}.orange {
+  background-color: orange;
+}.orangered {
+  background-color: orangered;
+}
+.red {
+  background-color: red;
+}
+.pink {
+  background-color: pink;
 }
 
 #canvas-outfit {
@@ -12,21 +24,62 @@ body, canvas {
   border: 25px solid black;
 }
 
-.flex {
+.margin-Left{
+  margin-left: 125px;
+}
+
+.margin-Right{
+  margin-right: 125px;
+}
+
+.nav-bar {
+  height: 100px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+
+img {
+  object-fit: contain;
+  height:50px;
+}
+
+
+.flexbox {
   display: flex;
-}
-
-
-.enLinea {
   flex-direction: row;
-  flex-wrap:  wrap;
-}
-
-.vertical {
-  flex-direction: column;
   align-items: center;
 }
 
+.justify-left {
+  justify-content: flex-start;
+}
+
+.justify-justify {
+  justify-content: space-between;
+}
+
+
+
+.button-black {
+  background-color: black;
+  font-family: Calibri;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+}
+
+
+ /* 
+ //
+ //
+ NAVIGATION BAR
+ //
+ //
+ */ 
 
 #Controls {
   left: 10px;
