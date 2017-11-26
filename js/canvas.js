@@ -22,9 +22,9 @@
     var ch = wh - 2*margin - 2*borderWidth - 2*borderRadius;
     console.log( "canvas width: " + cw);
     console.log( "  ''  height: " + ch);
-    $( "#canvas-outfit" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "pink"></canvas>' );
+    $( "#canvas-container" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "pink"></canvas>' );
     $( "#canvas-outfit" ).width(cw);
-    $( "#canvas-outfit" ).width(cw);
+    $( "#canvas-outfit" ).height(ch);
 
     // Get the canvas.
     //var canvas = $("#canvas");
