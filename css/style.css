@@ -1,3 +1,27 @@
+/*
+////////////////////////////////////////////////
+///////// VALORES GENERICOS DE DISEÑO  /////////
+////////////////////////////////////////////////
+*/
+
+:root {
+  --colorMain: black;
+  --colorSecondary: gray;
+  --module: 25px;
+  --canvasMargin: 25px;
+  --canvasBorderWidth: 25px;
+  --canvasBorderRadius:100px;
+  --marginMain:100px;
+  --marginSecundary:25px;
+  
+}
+
+
+/*
+////////////////////////////////////////////////
+///////////////     CSS      ///////////////////
+////////////////////////////////////////////////
+*/
 body, canvas {
   font-family: Calibri, Helvetica, Arial;
   margin: 0;
@@ -22,9 +46,9 @@ body, canvas {
 }
 
 #canvas-outfit {
-  margin:25px;
-  border-radius: 100px;
-  border: 25px solid black;
+  margin:var(--canvasMargin);
+  border-radius: var(--canvasBorderRadius);
+  border: var(--canvasBorderWidth) solid var(--colorMain);
   position: absolute;
 }
 
@@ -34,23 +58,23 @@ canvas {
 }
 
 .margin-Left{
-  margin-left: 125px;
+  margin-left: var(--marginMain);
 }
 
 .margin-Right{
-  margin-right: 125px;
+  margin-right: var(--marginMain);
 }
 
 .nav-bar {
   height: 100px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: var(--marginSecundary);
+  margin-bottom: var(--marginSecundary);
 }
 
 
 img {
   object-fit: contain;
-  height:50px;
+  height: calc(4*var(--module));
 }
 
 
