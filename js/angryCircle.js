@@ -2,8 +2,10 @@
 ////////////////////////////////////////////////////
 ///////  AngryCircle CONSTRUCTOR FUNCTION //////////
 ////////////////////////////////////////////////////
-function AngryCircle() {  
-
+function AngryCircle(canvas, ctx) {  
+    
+    this.canvas = canvas;
+    this.ctx = ctx;
     this.xPos = ctx.canvas.width/2;  // $('#xPosIni').val();      // x position.
     this.yPos = ctx.canvas.height/2; // $('#yPosIni').val();      // y position.
     this.xVel = 4; // $('#xVelIni').val();     // x Initial velocity.
@@ -27,12 +29,12 @@ function AngryCircle() {
 ////////////////////////////////////////////////////
 AngryCircle.prototype.draw = function() {
  
-  ctx.strokeRect(0, 0, canvas.width, canvas.height);  // Clear the canvas.
-  ctx.fillStyle = this.color; // Set the fill style to the colour of the circle.
-  ctx.beginPath(); // Make sure to start a new path.
-  ctx.arc(this.xPos, this.yPos, this.radius, 0, Math.PI * 2, false); // Draw 360° arc and fill it.
-  ctx.fill();
-  ctx.closePath();// Close the path.
+  this.ctx.strokeRect(0, 0, this.canvas.width, this.canvas.height);  // Clear the canvas.
+  this.ctx.fillStyle = this.color; // Set the fill style to the colour of the circle.
+  this.ctx.beginPath(); // Make sure to start a new path.
+  this.ctx.arc(this.xPos, this.yPos, this.radius, 0, Math.PI * 2, false); // Draw 360° arc and fill it.
+  this.ctx.fill();
+  this.ctx.closePath();// Close the path.
 
 }
 
@@ -41,30 +43,24 @@ AngryCircle.prototype.draw = function() {
 ///////////  AngryCircle MOVE METHOD ///////////
 ////////////////////////////////////////////////
 AngryCircle.prototype.move = function() {
-  setInterval(function(){
-      ctx.clearRect(0,0, canvas.width, canvas.height);
-      
-      //effect of gravity
-      this.xVel += this.xGravity;
-      this.yVel += this.yGravity;
-      //effect of friction
-      this.xVel *= this.friction / 100;
-      this.yVel *= this.friction / 100;
 
-      this.xPos += this.xVel;
-      this.yPos += this.yVel;
+  //effect of gravity
+  this.xVel += this.xGravity;
+  this.yVel += this.yGravity;
+  //effect of friction
+  this.xVel *= this.friction / 100;
+  this.yVel *= this.friction / 100;
 
-      //Boundary collision detection and adding effect of speed loss because of collision
-      if (this.xPos + this.radius > canvas.width || this.xPos + this.radius < 2*this.radius) {
-        this.vx *= -1 * this.bounceRate / 100;
-      }
-      if (this.yPos + this.radius > canvas.height || this.yPos + this.radius < 2*this.radius) {
-      this.yVel *= -1 * this.bounceRate / 100;
-      }
+  this.xPos += this.xVel;
+  this.yPos += this.yVel;
 
-      this.draw();
-  }.bind(this), frameRate);
-
+  //Boundary collision detection and adding effect of speed loss because of collision
+  if (this.xPos + this.radius > this.canvas.width || this.xPos + this.radius < 2*this.radius) {
+    this.vx *= -1 * this.bounceRate / 100;
+  }
+  if (this.yPos + this.radius > this.canvas.height || this.yPos + this.radius < 2*this.radius) {
+  this.yVel *= -1 * this.bounceRate / 100;
+  }
 };
 
 
@@ -72,10 +68,10 @@ AngryCircle.prototype.move = function() {
 ///////////  AngryCircle UPDATE METHOD ///////////
 ////////////////////////////////////////////////
 AngryCircle.prototype.update = function() {
-
+  var that = this;
   setInterval(function(){
-      this.draw();
-      this.move();
+      that.draw();
+      that.move();
   }, frameRate);
 
 };
