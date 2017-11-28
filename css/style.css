@@ -7,18 +7,18 @@
 :root {
 
   --colorMain: rgba( 0, 0, 0, 0.8);
-  --colorSecondary: gray;
+  --colorSecondary: #808080;
 
-  --module: 25px;
-  --navHeight: calc( 3*var(--module) );
+  --angryModule: 25px;
+  --navHeight: calc( 3*var(--angryModule) );
 
-  --canvasMargin: calc( 2*var(--module) );
-  --canvasOutfitBorder: var(--module);
-  --canvasOutfitRadius:calc( 3*var(--module) );
-  --canvasOutfitMargin: var(--module);
+  --canvasMargin: calc( 2*var(--angryModule) );
+  --canvasOutfitBorder: var(--angryModule);
+  --canvasOutfitRadius:calc( 3*var(--angryModule) );
+  --canvasOutfitMargin: var(--angryModule);
 
-  --marginMain: calc( 3*var(--module) );
-  --marginSecundary: var(--module);
+  --marginMain: calc( 3*var(--angryModule) );
+  --marginSecundary: var(--angryModule);
 
 }
 
@@ -100,8 +100,9 @@ img {
   justify-content: space-between;
 }
 
-expandWidth{
+.expandWidth{
   margin: 0 auto;
+  width: 700px;
 }
 
 
@@ -111,9 +112,9 @@ expandWidth{
   font-size: 1em;
   font-weight: bold;
   color: white;
-  height: calc( 2*var(--module) );
+  height: calc( 2*var(--angryModule) );
   border: none;
-  border-radius: var(--module) ;
+  border-radius: var(--angryModule) ;
 }
 
 .button-black:hover{
@@ -160,20 +161,6 @@ input {
 
 #ColourBox {
   width: 96px;
-}
-
-#resetButton {
-  border: 1px solid orange;
-  border-radius: 5px;
-  color: orange;
-  cursor: pointer;
-  display: inline-block;
-  margin: 10px 0;
-  padding: 3px 4px;
-}
-
-#resetButton:hover {
-  background-color: #060;
 }
 
 

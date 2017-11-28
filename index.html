@@ -15,7 +15,7 @@
         <div>
             <img src="./images/angry.png" alt="angry_circle">
         </div> 
-        <div class = "yellow flexbox justify-justify expandWidth">
+        <div class = "yellow expandWidth flexbox justify-justify">
             <div class = " orange margin-Left">
                 <h1>Angry Circles</h1>
             </div>
@@ -39,16 +39,16 @@
 
 
     <div id="gravity-controls">
-      <a onclick="Reset();" id="resetButton">Reset Ball</a><br />
-      <ilabel>Radius:</ilabel><input id="RadiusBox" type="number" min=0 max=100 /><br />
-      <ilabel>Colour:</ilabel><input id="ColourBox" type="text" /><br />
+
+      <ilabel>Radius:</ilabel><input id="radius" type="number" min=0 max=100 /><br />
+      <ilabel>Colour:</ilabel><input id="colour" type="text" /><br />
       <ilabel>Gravity:</ilabel><input id="GravityBox" type="number" min=0 max=100 /><br />
-      <ilabel>Bounce Rate:</ilabel><input id="BounceBox" type="number" min=0 max=100 /><br />
-      <ilabel>Friction:</ilabel><input id="FrictionBox" type="number" min=0 max=100 /><br />
-      <ilabel>X Position:</ilabel><input id="XPosBox" type="number" /><br />
-      <ilabel>Y Position:</ilabel><input id="YPosBox" type="number" /><br />
-      <ilabel>X Velocity:</ilabel><input id="XVelBox" type="number" /><br />
-      <ilabel>Y Velocity:</ilabel><input id="YVelBox" type="number" />
+      <ilabel>Bounce Rate:</ilabel><input id="bounceRate" type="number" min=0 max=100 /><br />
+      <ilabel>Friction:</ilabel><input id="friction" type="number" min=0 max=100 /><br />
+      <ilabel>X Position:</ilabel><input id="xPosIni" type="number" /><br />
+      <ilabel>Y Position:</ilabel><input id="yPosIni" type="number" /><br />
+      <ilabel>X Velocity:</ilabel><input id="xVelIni" type="number" /><br />
+      <ilabel>Y Velocity:</ilabel><input id="yVelIni" type="number" />
     </div>
 
 
@@ -62,8 +62,8 @@
     <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="./js/canvas.js"></script>
     <script type="text/javascript" src="./js/angry.js"></script>
-    <script type="text/javascript" src="./js/circle.js"></script>
-    <script type="text/javascript" src="./js/game1.js"></script>
+    <script type="text/javascript" src="./js/angryCircle.js"></script>
+    <script type="text/javascript" src="./js/angryGame1.js"></script>
 
   </body>
 </html>

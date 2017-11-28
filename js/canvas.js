@@ -18,6 +18,8 @@
     console.log( "  ''  height: " + wh);
     // Set the max new size for the canvas
     // we calculate the size subtracting the margins established in the design to the size of the window
+    console.log(angryModule);
+    
     var cw = ww - 4*angryModule;
     var ch = wh - 10*angryModule;
     console.log( "canvas width: " + cw);

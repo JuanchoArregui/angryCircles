@@ -1,15 +1,24 @@
+/////////////////////////////////////////////
+///////////////  VARIABLES  /////////////////
+/////////////////////////////////////////////
+
 //this are the parameters used in the design of the game
-var angryModule = 25;
+//and they are setted at the CSS
+var angryModule = ( $(':root').css('--angryModule') ).replace('px', ''); //jquery returns us a string like '25px' so we need to take out the 'px'
 var borderWidth = 25;
 var borderRadius = 100;
-
+var colorMain = $(':root').css('--colorMain');
 
 //more parameters for the game and tha animation
 var canvas;
 var ctx;
-var frameRate = 60;
+var frameRate = 1000/24; //frames per second
 
 
+
+/////////////////////////////////////////////
+///////////  SET ANGRY CANVAS  /////////////
+/////////////////////////////////////////////
 
 // initialize the canvas    
 setCanvas(); 
@@ -20,13 +29,13 @@ setCanvas();
 /////////////////////////////////////////////
 ///////////////  LISTENERS  /////////////////
 /////////////////////////////////////////////
-// window.addEventListener("resize", handleCanvasResize);
+
 $(document).ready(function(){
 
     $(window).on('resize', setCanvas);
 
     $("#button-play").click(function(){
-    alert ("ok, botón pulsado");
+      initAngryGame1()
     });
  
     $(".hamburger").click(function(){
