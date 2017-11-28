@@ -18,11 +18,11 @@
     console.log( "  ''  height: " + wh);
     // Set the max new size for the canvas
     // we calculate the size subtracting the margins established in the design to the size of the window
-    var cw = ww - 2*margin - 2*borderWidth;
-    var ch = wh - 2*margin - 2*borderWidth - 2*borderRadius;
+    var cw = ww - 4*angryModule;
+    var ch = wh - 10*angryModule;
     console.log( "canvas width: " + cw);
     console.log( "  ''  height: " + ch);
-    $( "#canvas-container" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "pink"></canvas>' );
+    $( "#canvas-container" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "canvas"></canvas>' );
     $( "#canvas-outfit" ).width(cw);
     $( "#canvas-outfit" ).height(ch);
 

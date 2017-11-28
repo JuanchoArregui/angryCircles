@@ -1,5 +1,5 @@
 //this are the parameters used in the design of the game
-var margin = 25;
+var angryModule = 25;
 var borderWidth = 25;
 var borderRadius = 100;
 
@@ -21,10 +21,18 @@ setCanvas();
 ///////////////  LISTENERS  /////////////////
 /////////////////////////////////////////////
 // window.addEventListener("resize", handleCanvasResize);
+$(document).ready(function(){
 
-$(window).on('resize', setCanvas);
+    $(window).on('resize', setCanvas);
 
-$("#button-play").click(function(){
+    $("#button-play").click(function(){
     alert ("ok, botón pulsado");
-  });
+    });
+ 
+    $(".hamburger").click(function(){
+      $(this).toggleClass("is-active");
+    });
 
+    
+});
+  

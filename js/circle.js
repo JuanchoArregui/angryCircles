@@ -1,57 +1,42 @@
 
-
-
-// Create the ball.
-b = new Ball();
-
-function Init() {
-  RadiusBox.value = 10;
-  ColourBox.value = "white"
-  GravityBox.value = 1;
-  BounceBox.value = 80;
-  FrictionBox.value = 5;
-  XPosBox.value = c.width / 10;
-  YPosBox.value = c.height / 10;
-  XVelBox.value = c.width / 10;
-  YVelBox.value = c.height / 100;
-  
-  b = new Ball();
-}
-
-// Setup actions to be called by timer.
-function Draw() {
-  b.Draw();
-  b.Move();
-}
+/////////////////////////////////////////////////////////
+///////  BOUNCING CIRCLE CONSTRUCTOR FUNCTION ///////////
+/////////////////////////////////////////////////////////
 
 // The ball object.
 function Ball() {  
-  // Starting position.
-  this.X = parseInt(XPosBox.value.toString());
-  this.Y = parseInt(YPosBox.value.toString());;
-  
-  // Colour of the ball.
-  this.C = ColourBox.value;
-  
-  // Initial velocity.
-  this.VX = parseInt(XVelBox.value.toString());
-  this.VY = parseInt(YVelBox.value.toString());
-  
-  // Size of the ball.
-  this.Radius = parseInt(RadiusBox.value.toString());;
-  
-  // Bounce rate of the ball as a percentage.
-  // Higher number equals more bounce.
-  this.BounceRate = parseInt(BounceBox.value.toString());
+    // Starting position.
+    this.X = parseInt(XPosBox.value.toString());
+    this.Y = parseInt(YPosBox.value.toString());;
+    
+    // Colour of the ball.
+    this.C = ColourBox.value;
+    
+    // Initial velocity.
+    this.VX = parseInt(XVelBox.value.toString());
+    this.VY = parseInt(YVelBox.value.toString());
+    
+    // Size of the ball.
+    this.Radius = parseInt(RadiusBox.value.toString());;
+    
+    // Bounce rate of the ball as a percentage.
+    // Higher number equals more bounce.
+    this.BounceRate = parseInt(BounceBox.value.toString());
 
-  // Controls the amount of horizontal friction.
-  // Higher number equals more friction.
-  this.Friction = parseInt(FrictionBox.value.toString());
-  
-  // Controls how hard gravity pulls on the ball.
-  // 1 is normal.
-  this.Gravity = parseInt(GravityBox.value.toString());
+    // Controls the amount of horizontal friction.
+    // Higher number equals more friction.
+    this.Friction = parseInt(FrictionBox.value.toString());
+    
+    // Controls how hard gravity pulls on the ball.
+    // 1 is normal.
+    this.Gravity = parseInt(GravityBox.value.toString());
 }
+
+
+
+/////////////////////////////////////////////////////////
+////////////  BOUNCING CIRCLE DRAW METHOD ///////////////
+/////////////////////////////////////////////////////////
 
 Ball.prototype.Draw = function() {
   // Clear the canvas.
@@ -70,6 +55,11 @@ Ball.prototype.Draw = function() {
   // Close the path.
   ctx.closePath();
 }
+
+
+/////////////////////////////////////////////////////////
+///////////  BOUNCING CIRCLE COLLISION METHOD ///////////
+/////////////////////////////////////////////////////////
 
 Ball.prototype.Move = function() {
   // These next blocks test to see if the ball is going
@@ -107,12 +97,4 @@ Ball.prototype.Move = function() {
   // This controls the decay rate of velocities.
   this.VY += (this.BounceRate / 100) * this.Gravity;
   this.VX -= this.VX / (250 / this.Friction);
-}
-
-Init();
-// BEGIN!
-setInterval(Draw, 1000 / frameRate);
-
-function Reset() {
-  b = new Ball();
 }

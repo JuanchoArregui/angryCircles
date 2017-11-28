@@ -9,29 +9,28 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
   </head>
 
-  <body class = "red">
+  <body class = "noMarginNoPadding">
   
     <nav class = "pink margin-Left nav-bar flexbox justify-left margin-Right">
         <div>
             <img src="./images/angry.png" alt="angry_circle">
         </div> 
-        <div class = "yellow flexbox justify-justify">
+        <div class = "yellow flexbox justify-justify expandWidth">
             <div class = " orange margin-Left">
                 <h1>Angry Circles</h1>
             </div>
             <div class = " orangered">
                 <button id = "button-play" class = "button-black" type="button" name="button">GET STARTED</button>
             </div>
-            <div class = "red">
-              <img class="menu-icon" src="./images/button_nav_toggle.png" alt="menu_icon">
-            </div>  
+            <div class="hamburger" id="hamburger">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+            </div>
         </div>   
     </nav>
 
-    <div id="kk">
-      </div>
-
-    <div id="canvas-container" class = "green">
+    <div id="canvas-container" class = "noMarginNoPadding">
         <div id="canvas-outfit">
         </div>
     </div>
@@ -64,6 +63,7 @@
     <script type="text/javascript" src="./js/canvas.js"></script>
     <script type="text/javascript" src="./js/angry.js"></script>
     <script type="text/javascript" src="./js/circle.js"></script>
+    <script type="text/javascript" src="./js/game1.js"></script>
 
   </body>
 </html>

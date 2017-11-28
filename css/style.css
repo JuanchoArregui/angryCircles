@@ -5,15 +5,21 @@
 */
 
 :root {
-  --colorMain: black;
+
+  --colorMain: rgba( 0, 0, 0, 0.8);
   --colorSecondary: gray;
+
   --module: 25px;
-  --canvasMargin: 25px;
-  --canvasBorderWidth: 25px;
-  --canvasBorderRadius:100px;
-  --marginMain:100px;
-  --marginSecundary:25px;
-  
+  --navHeight: calc( 3*var(--module) );
+
+  --canvasMargin: calc( 2*var(--module) );
+  --canvasOutfitBorder: var(--module);
+  --canvasOutfitRadius:calc( 3*var(--module) );
+  --canvasOutfitMargin: var(--module);
+
+  --marginMain: calc( 3*var(--module) );
+  --marginSecundary: var(--module);
+
 }
 
 
@@ -22,8 +28,11 @@
 ///////////////     CSS      ///////////////////
 ////////////////////////////////////////////////
 */
-body, canvas {
+body {
   font-family: Calibri, Helvetica, Arial;
+}
+
+.noMarginNoPadding {
   margin: 0;
   padding: 0;
 }
@@ -46,14 +55,14 @@ body, canvas {
 }
 
 #canvas-outfit {
-  margin:var(--canvasMargin);
-  border-radius: var(--canvasBorderRadius);
-  border: var(--canvasBorderWidth) solid var(--colorMain);
+  margin:var(--canvasOutfitMargin);
+  border-radius: var(--canvasOutfitRadius);
+  border: var(--canvasOutfitBorder) solid var(--colorMain);
   position: absolute;
 }
 
 canvas {
-  margin: 0;
+  margin: var(--canvasMargin);
   padding: 0;
 }
 
@@ -66,15 +75,14 @@ canvas {
 }
 
 .nav-bar {
-  height: 100px;
+  height: var(--navHeight);
   margin-top: var(--marginSecundary);
-  margin-bottom: var(--marginSecundary);
 }
 
 
 img {
   object-fit: contain;
-  height: calc(4*var(--module));
+  height: var(--navHeight);
 }
 
 
@@ -92,6 +100,9 @@ img {
   justify-content: space-between;
 }
 
+expandWidth{
+  margin: 0 auto;
+}
 
 
 .button-black {
@@ -100,9 +111,13 @@ img {
   font-size: 1em;
   font-weight: bold;
   color: white;
-  height: 50px;
+  height: calc( 2*var(--module) );
   border: none;
-  border-radius: 25px;
+  border-radius: var(--module) ;
+}
+
+.button-black:hover{
+  cursor: pointer;
 }
 
 
@@ -159,4 +174,85 @@ input {
 
 #resetButton:hover {
   background-color: #060;
+}
+
+
+
+/*
+////////////////////////////////////////////////////
+///////////     HAMBURGUER MENU      ///////////////
+////////////////////////////////////////////////////
+*/
+
+
+.hamburger .line{
+  width: 50px;
+  height: 5px;
+  background-color: #ee2fff;
+  display: block;
+  margin: 8px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger:hover{
+  cursor: pointer;
+}
+
+#hamburger{
+  position: relative;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#hamburger.is-active{
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#hamburger:before{
+  content: "";
+  position: absolute;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 70px;
+  height: 70px;
+  border: 5px solid transparent;
+  top: calc(50% - 35px);
+  left: calc(50% - 35px);
+  border-radius: 100%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#hamburger.is-active:before{
+  border: 5px solid #ecf0f1;
+}
+
+#hamburger.is-active .hamburgerLine{
+  width: 35px;
+}
+
+#hamburger.is-active .hamburgerLine:nth-child(2){
+  opacity: 0;
+}
+
+#hamburger.is-active .hamburgerLine:nth-child(1){
+  -webkit-transform: translateY(13px);
+  -ms-transform: translateY(13px);
+  -o-transform: translateY(13px);
+  transform: translateY(13px);
+}
+
+#hamburger.is-active .hamburgerLine:nth-child(3){
+  -webkit-transform: translateY(-13px) rotate(90deg);
+  -ms-transform: translateY(-13px) rotate(90deg);
+  -o-transform: translateY(-13px) rotate(90deg);
+  transform: translateY(-13px) rotate(90deg);
 }
