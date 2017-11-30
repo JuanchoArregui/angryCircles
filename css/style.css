@@ -6,7 +6,7 @@
 
 :root {
 
-  --colorMain: rgba( 0, 0, 0, 0.8);
+  --colorMain: rgba( 0, 0, 0, 0.3);
   --colorSecondary: #808080;
 
   --angryModule: 25px;
@@ -29,7 +29,7 @@
 ////////////////////////////////////////////////
 */
 body {
-  font-family: Calibri, Helvetica, Arial;
+  font-family: sans-serif, Calibri, Helvetica, Arial;
 }
 
 .noMarginNoPadding {
@@ -109,59 +109,81 @@ img {
 .button-black {
   background-color: black;
   font-family: Calibri;
-  font-size: 1em;
+  font-size: 2em;
   font-weight: bold;
   color: white;
   height: calc( 2*var(--angryModule) );
   border: none;
   border-radius: var(--angryModule) ;
+  width: 200px
 }
 
 .button-black:hover{
   cursor: pointer;
 }
 
-
- /* 
- //
- //
- NAVIGATION BAR
- //
- //
- */ 
-
-#Controls {
-  left: 10px;
-  position: fixed;
-  z-index: 2;
+h3 {
+  color: var(--colorMain);
+  font-size: 30px;
+  font-family: Arial;
+  font-weight: bold;
+  margin: 0 25px 0 0;
 }
 
-ilabel {
-  background-color: red;
-  border: 1px solid orange;
-  border-right: none;
-  border-radius: 5px 0 0 5px;
-  color: orange;
-  display: inline-block;
-  margin-top: 10px;
-  padding: 1px 5px 2px 5px;
-  text-align: right;
-  width: 100px;
+
+table {
+  border-collapse: collapse;
+  width: 60%;
+  max-width: 800px;
 }
 
-input {
-  background-color: red;
-  border: 1px solid orange;
-  border-radius: 0 5px 5px 0;
-  color: orange;
-  margin-top: 10px;
-  padding: 3px 2px;
+th {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 25px;
+}
+th, td {
+  width: 150px; /*Aquí va el ancho de la Celda*/
+  height: 10px; /*Aquí el Alto*/
+}
+
+
+
+span {
+  color: rgb(184, 184, 184);
+  font-size: 30px;
+  font-family: Arial;
+  font-weight: bold;
+  margin-left: 25px;
+}
+
+
+.buttonSmall {
+  background-color: var(--colorMain);
+  font-family: Calibri;
+  font-size: 20px;
+  font-weight: bold;
+  height: 40px;
+  border-radius: 10px ;
+  margin: 0 25px;
+  padding: 5px;
   text-align: center;
+  width: 150px;
 }
 
-#ColourBox {
-  width: 96px;
+.black {
+  background-color: var(--colorMain);
+  color: white;
+  border: solid 1px white;
 }
+
+.white {
+  background-color: white;
+  color: var(--colorMain);
+  border: solid 1px ;
+}
+
+
 
 
 

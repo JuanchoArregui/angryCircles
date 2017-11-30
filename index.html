@@ -20,7 +20,7 @@
                 <h1>Angry Circles</h1>
             </div>
             <div class = " orangered">
-                <button id = "button-play" class = "button-black" type="button" name="button">GET STARTED</button>
+                <button id = "button-play" class = "button-black" type="button" name="button"> ▌▌  Pause</button>
             </div>
             <div class="hamburger" id="hamburger">
               <span class="line"></span>
@@ -35,35 +35,54 @@
         </div>
     </div>
 
-    
 
+    <footer class="footer flexbox yellow margin-Left">
 
-    <div id="gravity-controls">
-
-      <ilabel>Radius:</ilabel><input id="radius" type="number" min=0 max=100 /><br />
-      <ilabel>Colour:</ilabel><input id="colour" type="text" /><br />
-      <ilabel>Gravity:</ilabel><input id="GravityBox" type="number" min=0 max=100 /><br />
-      <ilabel>Bounce Rate:</ilabel><input id="bounceRate" type="number" min=0 max=100 /><br />
-      <ilabel>Friction:</ilabel><input id="friction" type="number" min=0 max=100 /><br />
-      <ilabel>X Position:</ilabel><input id="xPosIni" type="number" /><br />
-      <ilabel>Y Position:</ilabel><input id="yPosIni" type="number" /><br />
-      <ilabel>X Velocity:</ilabel><input id="xVelIni" type="number" /><br />
-      <ilabel>Y Velocity:</ilabel><input id="yVelIni" type="number" />
-    </div>
-
-
-    <footer class="footer flexbox">
+        <table>
+            <thead>
+                <tr>
+                <th></th>
+                <th>Position</th>
+                <th>Speed</th>
+                <th>Gravity</th>
+                <th></th>
+                <th>Bounce Rate</th>
+                <th>Friction</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th> X:</td>
+                    <td id="xPos" >0</td>
+                    <td id="xVel" >0</td>
+                    <td> <input id="xGravityBox" class="buttonSmall white" type="number" min=0 max=100 /> </td>
+                    <td> </td>
+                    <td> <input id="bounceRate" class="buttonSmall white" type="number" min=0 max=100 /> </td>
+                    <td> <input id="friction" class="buttonSmall white" type="number" min=0 max=100 />  </td>
+                </tr>
+                <th> Y:</td>
+                    <td id="yPos" >0</td>
+                    <td id="yVel" >0</td>
+                    <td> <input id="yGravityBox" class="buttonSmall white" type="number" min=0 max=100 /> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            </tbody>
+        </table>  
+            
         <div>
-          just for square heads
+          <h2>just for square heads</h2>
         </div>
+        
     </footer>
 
-  
-    <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="./js/canvas.js"></script>
-    <script type="text/javascript" src="./js/angry.js"></script>
+    <script type="text/javascript" src="./js/lib/jquery.js"></script>
+    <script type="text/javascript" src="./js/lib/jcanvas.js"></script>
+    <script type="text/javascript" src="./js/angryCanvas.js"></script>
     <script type="text/javascript" src="./js/angryCircle.js"></script>
-    <script type="text/javascript" src="./js/angryGame1.js"></script>
+    <script type="text/javascript" src="./js/angryGame.js"></script>
+    <script type="text/javascript" src="./js/angrySettings.js"></script>
 
   </body>
 </html>
