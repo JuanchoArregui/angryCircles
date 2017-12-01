@@ -3,7 +3,7 @@
 ///////////////  SET CANVAS  ////////////////////
 /////////////////////////////////////////////////
 
-function setCanvas() {
+function setAngryCanvas() {
   //alert("activado evento resize");
   //console.log( this);
 
@@ -27,4 +27,6 @@ function setCanvas() {
   $( "#canvas-container" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "pink canvas"></canvas>' );
   $( "#canvas-outfit" ).width(cw);
   $( "#canvas-outfit" ).height(ch);
+
+  $canvas = $('#canvas');
 }

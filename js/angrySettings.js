@@ -10,7 +10,7 @@ var borderRadius = 100;
 var colorMain = $(':root').css('--colorMain');
 
 //more parameters for the game and tha animation
-var $myCanvas;
+var $canvas;
 var ctx;
 var frameRate = 1000/24; //frames per second
 
@@ -20,8 +20,8 @@ var frameRate = 1000/24; //frames per second
 /////////////////////////////////////////////
 
 // initialize the canvas    
-setCanvas(); 
-$canvas = $('#canvas');
+setAngryCanvas(); 
+
 // Get the canvas.
 //canvas = document.getElementById("canvas"); //var canvas = $("#canvas"); PQ NO FUNCIONA?????
 // Get the 2d context globally 
@@ -40,33 +40,40 @@ $canvas = $('#canvas');
 
 $(document).ready(function(){
 
-    $(window).on('resize', setCanvas);
+  // canvas change size
+  $(window).on('resize', setAngryCanvas);
 
-
-
-    $("#button-play").click(function(){
-       $(this).toggleClass("is-active");
-       console.log("pulsado botón")
-
-        if ( $(this).hasClass( "is-active" ) ) {
-          console.log("CONTINUAMOS el juego")
-          $(this).text(" ► Play");
-          clearInterval(angryCircle.angryMoving)
-        }
-        else {
-          console.log("Pausamos el juego")
-          $(this).text(" ▌▌  Pause");
-          angryCircle.update();
-        } 
-    });
-
-
-
- 
-    $(".hamburger").click(function(){
+  //  button play/pause
+  $("#button-play").click(function(){
       $(this).toggleClass("is-active");
-    });
+      console.log("pulsado botón")
 
+      if ( $(this).hasClass( "is-active" ) ) {
+        console.log("CONTINUAMOS el juego")
+        $(this).text(" ► Play");
+        clearInterval(angryCircle.angryMoving)
+      }
+      else {
+        console.log("Pausamos el juego")
+        $(this).text(" ▌▌  Pause");
+        angryCircle.update();
+      } 
+  });
+
+  //  hamburguer menu
+  $(".hamburger").click(function(){
+    $(this).toggleClass("is-active");
+  });
+
+  //  slider bar
+  var slider = $('#xGravitySlider');
+  var output = $('#xGravitySpan');
+  output.innerHTML = slider.value;
+
+  $('#xGravitySlider').on('input', function () {
+    $('#xGravitySpan').text(this.value) ;
+    console.log(this.value)
+  });
     
 });
   

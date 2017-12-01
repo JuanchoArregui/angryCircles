@@ -68,16 +68,28 @@ AngryCircle.prototype.move = function() {
 
   this.xPos += this.xVel;
   this.yPos += this.yVel;
-  debugger;
+ 
 
   //Boundary collision detection and adding effect of speed loss because of collision
-  if (this.xPos + this.radius > $canvas.width() || this.xPos - this.radius < 0) {
+  if (this.xPos + this.radius > $canvas.width() ) {
+    this.xPos = $canvas.width()-this.radius;
+    console.log("choque RIGHT border ");
     this.xVel *= -1 * this.bounceRate / 100;
-    console.log("choque en X");
   }
-  if (this.yPos + this.radius > $canvas.height() || this.yPos - this.radius < 0) {
-  this.yVel *= -1 * this.bounceRate / 100;
-  console.log("choque en Y");
+  if ( this.xPos - this.radius < 0 ) {
+    this.xPos = this.radius;
+    console.log("choque LEFT border ");
+    this.xVel *= -1 * this.bounceRate / 100;
+  }
+  if (this.yPos + this.radius > $canvas.height() ) {
+    this.yPos = $canvas.height()-this.radius;
+    console.log("choque BOTTOM border ");
+    this.yVel *= -1 * this.bounceRate / 100;
+  }
+  if ( this.yPos - this.radius < 0 ) {
+    this.yPos = this.radius;
+    console.log("choque TOP border "); 
+    this.yVel *= -1 * this.bounceRate / 100;
   }
 };
 
