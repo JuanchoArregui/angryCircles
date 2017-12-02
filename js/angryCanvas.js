@@ -24,9 +24,11 @@ function setAngryCanvas() {
   var ch = wh - 20*angryModule;
   console.log( "canvas width: " + cw);
   console.log( "  ''  height: " + ch);
-  $( "#canvas-container" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "pink canvas"></canvas>' );
+  $( "#canvas-outfit" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "pink"></canvas>' );
   $( "#canvas-outfit" ).width(cw);
   $( "#canvas-outfit" ).height(ch);
 
   $canvas = $('#canvas');
+
+  
 }

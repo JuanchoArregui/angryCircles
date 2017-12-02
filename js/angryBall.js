@@ -1,22 +1,26 @@
 
 ////////////////////////////////////////////////////
-///////  AngryCircle CONSTRUCTOR FUNCTION //////////
+///////  angryBall CONSTRUCTOR FUNCTION //////////
 ////////////////////////////////////////////////////
-function AngryCircle() {  
+function AngryBall() {  
    
     this.xPos = $canvas.width()/2;  // $('#xPosIni').val();      // x position.
     this.yPos = $canvas.height()/2; // $('#yPosIni').val();      // y position.
+    this.xPosPrev;
+    this.yPosPrev;
+    this.time;
+    this.timePrev;
     this.xVel = 150; // $('#xVelIni').val();     // x Initial velocity.
     this.yVel = 160; // $('#yVelIni').val();     // y Initial velocity.
-    this.xGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the circle.  1 is normal.ç
-    this.yGravity = 10; // $('#gravity').val();        // Controls how hard gravity pulls on the circle.  1 is normal.
+    this.xGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.ç
+    this.yGravity = 10; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
     this.spin = 0; //positive value means clockwise spin, and negative counterclockwise
 
-    this.color = colorMain; // Colour of the circle.
-    this.radius = 2*angryModule; // $('#radius').val();  // Radius of the circle.
-    this.width = angryModule;  // Radius of the circle.
+    this.color = colorMain; // Colour of the BallangryBall.
+    this.radius = 2*angryModule; // $('#radius').val();  // Radius of the BallangryBall.
+    this.width = angryModule;  // Radius of the BallangryBall.
     
-    this.bounceRate = 80; // $('#bounceRate').val();     // Bounce rate of the circle as a percentage. Higher number means more bounce.
+    this.bounceRate = 80; // $('#bounceRate').val();     // Bounce rate of the BallangryBall as a percentage. Higher number means more bounce.
     this.friction = 2 ; // $('#friction').val();    // Controls the amount of horizontal friction. Higher number equals more friction.
     
     $('#xGravitySlider').value = this.xGravity;
@@ -31,60 +35,48 @@ function AngryCircle() {
 
 
 /////////////////////////////////////////////////////
-////////////  AngryCircle DRAW METHOD ///////////////
+////////////  angryBall DRAW METHOD ///////////////
 ////////////////////////////////////////////////////
-AngryCircle.prototype.draw = function() {
- 
+AngryBall.prototype.draw = function() {
+ console.log("draw");
   // ctx.strokeRect(0, 0, canvas.width, canvas.height);  // Clear the canvas.
   $canvas.clearCanvas();
 
-  $canvas.drawArc({
+  $canvas.drawImage({
+    source: './images/angry.png',
     layer: true,
     draggable: true,
     bringToFront: true,
-    name: 'angryCircle',
+    name: 'angryBallangryBall',
     fillStyle: this.color,
     x: this.xPos, y: this.yPos,
-    radius: this.radius,
+    width: 2*this.radius,
+    height: 2*this.radius,
 
+    dragstart: function(layer) {
+      this.xPosPrev = layer.eventX;
+      this.yPosPrev = layer.eventY;
+      this.timePrev = Date.now();
+    },
+    drag: function(layer) {
+      this.xPos = layer.eventX
+      this.yPos = layer.eventY
+      this.time = Date.now();
+      console.log("posición bola: " + this.xPos + ", " + this.yPos);
+    },
     dragstop: function(layer) {
-      var layerName = layer.name;
-      console.log('The <strong>' + layerName + '</strong> has been dropped.');
-    }
+      var difX = this.xPos - this.xPosPrev;
+      var difY = this.yPos - this.yPosPrev;
+      var difTime = this.time - this.timePrev;
+      
+      console.log("fin TOUCH" );
+      console.log("difX: " + difX );
+      console.log("difY: " + difY );
+      console.log("difTime: " + difTime );
 
-  })
-  .drawRect({
-    layer: true,
-    draggable: true,
-    bringToFront: true,
-    name: 'redSquare',
-    fillStyle: 'red',
-    x: 190,
-    y: 100,
-    width: 100,
-    height: 100,
-    rotate: 130,
-    shadowX: -2,
-    shadowY: 5,
-    shadowBlur: 3,
-    shadowColor: 'rgba(0, 0, 0, 0.5)',
-
-    touchstart: function(layer) {
-      console.log("objeto tocado");
-    },
-    touchend: function(layer) {
-     console.log("objeto soltado");
-    },
-    click: function(layer) {
-      console.log("objeto clic");
     }
 
   });
- // $canvas.drawArc({
- //   fillStyle: 'white',
-//    x: this.xPos, y: this.yPos,
-//    radius: (this.radius - this.width/2),
-//  });
 
   $("#xPos").text(Math.round(this.xPos));
   $("#yPos").text(Math.round(this.yPos));
@@ -97,9 +89,13 @@ AngryCircle.prototype.draw = function() {
 
 
 ////////////////////////////////////////////////
-///////////  AngryCircle MOVE METHOD ///////////
+///////////  angryBall MOVE METHOD ///////////
 ////////////////////////////////////////////////
-AngryCircle.prototype.move = function() {
+AngryBall.prototype.move = function() {
+
+  //store the prvious position (still dont know for what)
+  this.xPosPrev = this.xPos;
+  this.yPosPrev = this.yPos;
 
   //effect of gravity
   this.xVel += this.xGravity;
@@ -137,9 +133,9 @@ AngryCircle.prototype.move = function() {
 
 
 ////////////////////////////////////////////////
-///////////  AngryCircle UPDATE METHOD /////////
+///////////  angryBall UPDATE METHOD /////////
 ////////////////////////////////////////////////
-AngryCircle.prototype.update = function() {
+AngryBall.prototype.update = function() {
 
   this.angryMoving = setInterval(function(){
     this.move();

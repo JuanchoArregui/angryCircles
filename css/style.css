@@ -58,13 +58,12 @@ body {
   margin:var(--canvasOutfitMargin);
   border-radius: var(--canvasOutfitRadius);
   border: var(--canvasOutfitBorder) solid var(--colorMain);
-  position: absolute;
+  z-index: 1 ;
+}
+#canvas {
+  z-index: 0 ;
 }
 
-canvas {
-  margin: var(--canvasMargin);
-  padding: 0;
-}
 
 .margin-Left{
   margin-left: var(--marginMain);
@@ -185,90 +184,6 @@ th, td {
   color: var(--colorMain);
   border: solid 1px ;
 }
-
-
-
-
-
-/*
-////////////////////////////////////////////////////
-///////////     HAMBURGUER MENU      ///////////////
-////////////////////////////////////////////////////
-*/
-
-
-.hamburger .line{
-  width: 50px;
-  height: 5px;
-  background-color: #ee2fff;
-  display: block;
-  margin: 8px auto;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-.hamburger:hover{
-  cursor: pointer;
-}
-
-#hamburger{
-  position: relative;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-#hamburger.is-active{
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-#hamburger:before{
-  content: "";
-  position: absolute;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 70px;
-  height: 70px;
-  border: 5px solid transparent;
-  top: calc(50% - 35px);
-  left: calc(50% - 35px);
-  border-radius: 100%;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-#hamburger.is-active:before{
-  border: 5px solid #ecf0f1;
-}
-
-#hamburger.is-active .hamburgerLine{
-  width: 35px;
-}
-
-#hamburger.is-active .hamburgerLine:nth-child(2){
-  opacity: 0;
-}
-
-#hamburger.is-active .hamburgerLine:nth-child(1){
-  -webkit-transform: translateY(13px);
-  -ms-transform: translateY(13px);
-  -o-transform: translateY(13px);
-  transform: translateY(13px);
-}
-
-#hamburger.is-active .hamburgerLine:nth-child(3){
-  -webkit-transform: translateY(-13px) rotate(90deg);
-  -ms-transform: translateY(-13px) rotate(90deg);
-  -o-transform: translateY(-13px) rotate(90deg);
-  transform: translateY(-13px) rotate(90deg);
-}
-
 
 
 

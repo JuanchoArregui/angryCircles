@@ -52,41 +52,43 @@ $(document).ready(function(){
       if ( $(this).hasClass( "is-active" ) ) {
         console.log("CONTINUAMOS el juego")
         $(this).text(" ► Play");
-        clearInterval(angryCircle.angryMoving)
+        clearInterval(angryBall.angryMoving)
       }
       else {
         console.log("Pausamos el juego")
         $(this).text(" ▌▌  Pause");
-        angryCircle.update();
+        angryBall.update();
       } 
-  });
-
-  //  hamburguer menu
-  $(".hamburger").click(function(){
-    $(this).toggleClass("is-active");
   });
 
   //  slider bars
 
   $('#xGravitySlider').on('input', function () {
     $('#xGravitySpan').text(this.value) ;
-    angryCircle.xGravity = this.value;
+    angryBall.xGravity = this.value;
   });
 
   $('#yGravitySlider').on('input', function () {
     $('#yGravitySpan').text(this.value) ;
-    angryCircle.yGravity = this.value;
+    angryBall.yGravity = this.value;
   });
 
   $('#bounceRateSlider').on('input', function () {
     $('#bounceRateSpan').text(this.value) ;
-    angryCircle.bounceRate = this.value;
+    angryBall.bounceRate = this.value;
   });
 
   $('#frictionSlider').on('input', function () {
     $('#frictionSpan').text(this.value) ;
-    angryCircle.friction = this.value;
+    angryBall.friction = this.value;
   });
+
+//  canvas mouse
+//  $canvas.on('click', function(event){
+//    var x = event.clientX - $canvas.position().left;
+//    var y = event.clientY - $canvas.position().top;
+//     console.log('click en. ' + x + ' ' + y);
+//  });
 
 
 
@@ -99,8 +101,8 @@ $(document).ready(function(){
 ////////   INIT  ///////////////
 /////////////////////////////////////////////
 
-  // Create new angryCircle.
-  var angryCircle = new AngryCircle();
+  // Create new angryBall.
+  var angryBall = new AngryBall();
   
-    angryCircle.draw();
-    angryCircle.update();
+    angryBall.draw();
+    //angryBall.update();
