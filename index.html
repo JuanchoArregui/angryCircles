@@ -41,32 +41,36 @@
         <table>
             <thead>
                 <tr>
-                <th></th>
-                <th>Position</th>
-                <th>Speed</th>
-                <th>Gravity</th>
-                <th></th>
-                <th>Bounce Rate</th>
-                <th>Friction</th>
+                    <th class="row1"></th>
+                    <th class="row2">Position</th>
+                    <th class="row2">Speed</th>
+                    <th class="row2">Spin</th>
+                    <th class="row2">Gravity</th>
+                    <th class="row3"></th>
+                    <th class="row3">Bounce Rate</th>
+                    <th class="row3">Friction</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th> X:</td>
-                    <td id="xPos" >0</td>
-                    <td id="xVel" >0</td>
-                    <td> <span id="xGravitySpan">spannnn</span> <input type="range" min="1" max="100" value="50" class="slider" id="xGravitySlider"> </td>
-                    <td> </td>
-                    <td> <input type="range" min="1" max="100" value="50" class="slider" id="bounceRate"> </td>
-                    <td> <input type="range" min="1" max="100" value="50" class="slider" id="friction">   </td>
+                    <th> X:</th>
+                    <td id="xPos" class="values" ></td>
+                    <td id="xVel" class="values"></td>
+                    <td id="spin" class="values"></td>
+                    <td id="xGravitySpan" class="values" ></td>
+                    <td> <input id="xGravitySlider" type="range" min="-10" max="10" value="0" class="slider" > </td>
+                    <td> <input id="bounceRateSlider" type="range" min="0" max="100" value="50" class="slider" > </td>
+                    <td> <input id="frictionSlider" type="range" min="0" max="100" value="50" class="slider" >   </td>
                 </tr>
-                <th> Y:</td>
-                    <td id="yPos" >0</td>
-                    <td id="yVel" >0</td>
-                    <td> <span id="yGravity"></span> <input type="range" min="1" max="100" value="50" class="slider" id="yGravitySlider">  </td>
+                <tr>
+                    <th> Y:</th>
+                    <td id="yPos" class="values"></td>
+                    <td id="yVel" class="values"></td>
                     <td> </td>
-                    <td> </td>
-                    <td> </td>
+                    <td id="yGravitySpan" class="values" ></td>
+                    <td> <input id="yGravitySlider"type="range" min="-10" max="10" value="0" class="slider">  </td>
+                    <td id="bounceRateSpan" class="values"> </td>
+                    <td id="frictionSpan" class="values"> </td>
                 </tr>
             </tbody>
         </table>  

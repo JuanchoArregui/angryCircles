@@ -9,6 +9,7 @@ var borderWidth = 25;
 var borderRadius = 100;
 var colorMain = $(':root').css('--colorMain');
 
+
 //more parameters for the game and tha animation
 var $canvas;
 var ctx;
@@ -65,15 +66,30 @@ $(document).ready(function(){
     $(this).toggleClass("is-active");
   });
 
-  //  slider bar
-  var slider = $('#xGravitySlider');
-  var output = $('#xGravitySpan');
-  output.innerHTML = slider.value;
+  //  slider bars
 
   $('#xGravitySlider').on('input', function () {
     $('#xGravitySpan').text(this.value) ;
-    console.log(this.value)
+    angryCircle.xGravity = this.value;
   });
+
+  $('#yGravitySlider').on('input', function () {
+    $('#yGravitySpan').text(this.value) ;
+    angryCircle.yGravity = this.value;
+  });
+
+  $('#bounceRateSlider').on('input', function () {
+    $('#bounceRateSpan').text(this.value) ;
+    angryCircle.bounceRate = this.value;
+  });
+
+  $('#frictionSlider').on('input', function () {
+    $('#frictionSpan').text(this.value) ;
+    angryCircle.friction = this.value;
+  });
+
+
+
     
 });
   

@@ -132,29 +132,32 @@ h3 {
 
 
 table {
-  border-collapse: collapse;
+  /* border-collapse: collapse;
   width: 60%;
   max-width: 800px;
+
+  */
+  border: 1px solid black;
 }
 
 th {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
-  margin-right: 25px;
 }
 th, td {
-  width: 150px; /*Aquí va el ancho de la Celda*/
-  height: 10px; /*Aquí el Alto*/
+  height: 15px; /*Aquí el Alto*/
 }
 
+.row1{width: 5%;}
+.row2{width: 10%;}
+.row3{width: 15%;}
 
-
-span {
+.values {
   color: rgb(184, 184, 184);
+  background: red;
   font-size: 30px;
   font-family: Arial;
   font-weight: bold;
-  margin-left: 25px;
 }
 
 
@@ -282,7 +285,6 @@ span {
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
-  appearance: none;
   width: 100px; /* Full-width */
   height: 20px; /* Specified height */
   border-radius: 10px;   
@@ -301,7 +303,6 @@ span {
 /* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */ 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
-  appearance: none;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
   border-radius: 50%;  
