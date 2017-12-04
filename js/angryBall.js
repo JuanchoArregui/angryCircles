@@ -13,8 +13,9 @@ function AngryBall() {
     this.xVel = 150; // $('#xVelIni').val();     // x Initial velocity.
     this.yVel = 160; // $('#yVelIni').val();     // y Initial velocity.
     this.xGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.ç
-    this.yGravity = 10; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
+    this.yGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
     this.spin = 0; //positive value means clockwise spin, and negative counterclockwise
+    this.angle = 0;
 
     this.color = colorMain; // Colour of the BallangryBall.
     this.radius = 2*angryModule; // $('#radius').val();  // Radius of the BallangryBall.
@@ -23,6 +24,7 @@ function AngryBall() {
     this.bounceRate = 80; // $('#bounceRate').val();     // Bounce rate of the BallangryBall as a percentage. Higher number means more bounce.
     this.friction = 2 ; // $('#friction').val();    // Controls the amount of horizontal friction. Higher number equals more friction.
     
+    this.angryMoving; // we use this to stop the update method with a clearinterval
     $('#xGravitySlider').value = this.xGravity;
     $('#xGravitySpan').text(this.xGravity) ;
     $('#yGravitySlider').value = this.yGravity;
@@ -41,7 +43,9 @@ AngryBall.prototype.draw = function() {
  console.log("draw");
   // ctx.strokeRect(0, 0, canvas.width, canvas.height);  // Clear the canvas.
   $canvas.clearCanvas();
-
+  
+  var that = this;
+  console.log();
   $canvas.drawImage({
     source: './images/angry.png',
     layer: true,
@@ -52,27 +56,45 @@ AngryBall.prototype.draw = function() {
     x: this.xPos, y: this.yPos,
     width: 2*this.radius,
     height: 2*this.radius,
+    rotate: this.angle,
+
+
+    click: function(layer) {
+      console.log("CLICK");
+      },
 
     dragstart: function(layer) {
-      this.xPosPrev = layer.eventX;
-      this.yPosPrev = layer.eventY;
-      this.timePrev = Date.now();
+      clearInterval(that.angryMoving);
+      console.log("DRAGSTART");
+      that.angrySpeedDrag = setInterval(function(){
+        that.xPosPrev = layer.eventX;
+        that.yPosPrev = layer.eventY;
+      //console.log("posición prev: " + that.xPos + ", " + that.yPos);
+      }, frameRate);
     },
+
     drag: function(layer) {
-      this.xPos = layer.eventX
-      this.yPos = layer.eventY
-      this.time = Date.now();
-      console.log("posición bola: " + this.xPos + ", " + this.yPos);
+      that.xPos = layer.eventX;
+      that.yPos = layer.eventY;
+      console.log("dragging");
+
     },
+
     dragstop: function(layer) {
-      var difX = this.xPos - this.xPosPrev;
-      var difY = this.yPos - this.yPosPrev;
-      var difTime = this.time - this.timePrev;
+      clearInterval(that.angrySpeedDrag);
+
+      var difX = that.xPos - that.xPosPrev;
+      var difY = that.yPos - that.yPosPrev;
+
+      that.xVel = 10*difX/frameRate;
+      that.yVel = 10*difY/frameRate;
+
       
       console.log("fin TOUCH" );
-      console.log("difX: " + difX );
-      console.log("difY: " + difY );
-      console.log("difTime: " + difTime );
+      console.log("Vel X: " + that.xVel );
+      console.log("Vel Y: " + that.yVel );
+
+      that.update();
 
     }
 
@@ -93,19 +115,23 @@ AngryBall.prototype.draw = function() {
 ////////////////////////////////////////////////
 AngryBall.prototype.move = function() {
 
-  //store the prvious position (still dont know for what)
+  //store the prvious position 
   this.xPosPrev = this.xPos;
   this.yPosPrev = this.yPos;
 
   //effect of gravity
   this.xVel += this.xGravity;
   this.yVel += this.yGravity;
+
   //effect of friction
   this.xVel *= (1 - this.friction / 100);
   this.yVel *= (1 - this.friction / 100);
+  this.spin *= (1 - this.friction / 100);
 
+  //new position and spin
   this.xPos += this.xVel;
   this.yPos += this.yVel;
+  this.angle += this.spin;
  
 
   //Boundary collision detection and adding effect of speed loss because of collision
@@ -113,21 +139,47 @@ AngryBall.prototype.move = function() {
     this.xPos = $canvas.width()-this.radius;
     console.log("choque RIGHT border ");
     this.xVel *= -1 * this.bounceRate / 100;
+        if (this.yPos > this.yPosPrev) {
+          this.spin -= this.yVel*0.1;
+        }
+        else {
+          this.spin += this.yVel*0.1;
+        }
   }
   if ( this.xPos - this.radius < 0 ) {
     this.xPos = this.radius;
     console.log("choque LEFT border ");
     this.xVel *= -1 * this.bounceRate / 100;
+        if (this.yPos > this.yPosPrev) {
+          this.spin += this.yVel*0.1;
+        }
+        else {
+          this.spin -= this.yVel*0.1;
+        }
   }
   if (this.yPos + this.radius > $canvas.height() ) {
     this.yPos = $canvas.height()-this.radius;
     console.log("choque BOTTOM border ");
     this.yVel *= -1 * this.bounceRate / 100;
+
+        if (this.xPos > this.xPosPrev) {
+          this.spin += this.xVel*0.1;
+        }
+        else {
+          this.spin -= this.xVel*0.1;
+        }
   }
+
   if ( this.yPos - this.radius < 0 ) {
     this.yPos = this.radius;
     console.log("choque TOP border "); 
     this.yVel *= -1 * this.bounceRate / 100;
+        if (this.xPos > this.xPosPrev) {
+          this.spin -= this.xVel*0.1;
+        }
+        else {
+          this.spin += this.xVel*0.1;
+        }
   }
 };
 
@@ -145,7 +197,7 @@ AngryBall.prototype.update = function() {
       this.xVel = 0;
       this.yVel = 0;
       console.log("PELOTA PARADA!");
-      clearInterval(this.angryMoving);;
+      clearInterval(this.angryMoving);
     }
     
 }.bind(this), frameRate);

@@ -84,6 +84,10 @@ $(document).ready(function(){
   });
 
 //  canvas mouse
+  $canvas.mouseleave(function(event){
+    console.log("el mouse está fuera del canvas!!!!!!!");
+  });
+
 //  $canvas.on('click', function(event){
 //    var x = event.clientX - $canvas.position().left;
 //    var y = event.clientY - $canvas.position().top;
@@ -92,8 +96,6 @@ $(document).ready(function(){
 
 
 
-    
-});
   
 
 
@@ -105,4 +107,7 @@ $(document).ready(function(){
   var angryBall = new AngryBall();
   
     angryBall.draw();
-    //angryBall.update();
+    angryBall.update();
+
+
+})
