@@ -25,6 +25,8 @@ function AngryBall() {
     this.friction = 2 ; // $('#friction').val();    // Controls the amount of horizontal friction. Higher number equals more friction.
     
     this.angryMoving; // we use this to stop the update method with a clearinterval
+
+    // we update the sliders
     $('#xGravitySlider').value = this.xGravity;
     $('#xGravitySpan').text(this.xGravity) ;
     $('#yGravitySlider').value = this.yGravity;
@@ -45,6 +47,7 @@ AngryBall.prototype.draw = function() {
   $canvas.clearCanvas();
   
   var that = this;
+  
   console.log();
   $canvas.drawImage({
     source: './images/angry.png',
