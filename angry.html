@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <title>Angry Circles</title>
+    <title>AngryBalls</title>
     <meta charset="UTF-8">
     
     <link rel="stylesheet" type="text/css" href="./css/style.css">
@@ -12,19 +12,14 @@
   
     <nav class = "margin-Left nav-bar flexbox justify-left margin-Right">
         <div id="angryLogo">
-            <img src="./images/angry.png" alt="angry_circle">
+            <img src="./images/angryBall.png" alt="angryBall">
         </div> 
-        <div class = "yellow expandWidth flexbox justify-justify">
-            <div class = " orange margin-Left">
-                <h1>Angry Circles</h1>
+        <div class = "expandWidth flexbox justify-justify">
+            <div class = "margin-Left margin-Right">
+                <h1>AngryBalls</h1>
             </div>
-            <div class = " orangered">
+            <div>
                 <button id = "button-play" class = "button-black" type="button" name="button"> ▌▌  Pause</button>
-            </div>
-            <div class="hamburger" id="hamburger">
-              <span class="line"></span>
-              <span class="line"></span>
-              <span class="line"></span>
             </div>
         </div>   
     </nav>
@@ -35,7 +30,7 @@
     </div>
 
 
-    <footer class="footer flexbox yellow margin-Left">
+    <footer class="footer flexbox justify-justify margin-Left margin-Right">
 
         <table>
             <thead>
@@ -57,9 +52,14 @@
                     <td id="xVel" class="values"></td>
                     <td id="spin" class="values"></td>
                     <td id="xGravitySpan" class="values" ></td>
-                    <td> <input id="xGravitySlider" type="range" min="-10" max="10" value="0" class="slider" > </td>
-                    <td> <input id="bounceRateSlider" type="range" min="0" max="100" value="50" class="slider" > </td>
-                    <td> <input id="frictionSlider" type="range" min="0" max="100" value="50" class="slider" >   </td>
+                    <td> <input id="xGravitySlider" type="range" min="-10" max="10"  class="slider" > </td>
+                    <td> <input id="bounceRateSlider" type="range" min="0" max="100" class="slider" > </td>
+                    <td> <input id="frictionSlider" type="range" min="0" max="100"  class="slider" >   </td>
+
+                  </div>
+                  
+
+
                 </tr>
                 <tr>
                     <th> Y:</th>
