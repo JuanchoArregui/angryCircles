@@ -12,14 +12,14 @@
   
     <nav class = "margin-Left nav-bar flexbox justify-left margin-Right">
         <div id="angryLogo">
-            <img src="./images/angryBall.png" alt="angryBall">
+            <img src="./images/angryBall.png" alt="angryBall" draggable="true" ondragstart="dragStart(event);">
         </div> 
         <div class = "expandWidth flexbox justify-justify">
             <div class = "margin-Left margin-Right">
                 <h1>AngryBalls</h1>
             </div>
             <div>
-                <button id = "button-play" class = "button-black" type="button" name="button"> ▌▌  Pause</button>
+                <button id = "button-play" class = "button-black is-active" type="button" name="button"> ► Play</button>
             </div>
         </div>   
     </nav>
@@ -57,7 +57,7 @@
                     <td> <input id="frictionSlider" type="range" min="0" max="100"  class="slider" >   </td>
 
                   </div>
-                  
+
 
 
                 </tr>
@@ -83,10 +83,11 @@
 
     <script type="text/javascript" src="./js/lib/jquery.js"></script>
     <script type="text/javascript" src="./js/lib/jcanvas.js"></script>
-    <script type="text/javascript" src="./js/angryCanvas.js"></script>
     <script type="text/javascript" src="./js/angryBall.js"></script>
     <script type="text/javascript" src="./js/angryGame.js"></script>
+    <script type="text/javascript" src="./js/angryCollision.js"></script>
     <script type="text/javascript" src="./js/angrySettings.js"></script>
+    <script type="text/javascript" src="./js/angryDragAndDrop.js"></script>
 
   </body>
 </html>

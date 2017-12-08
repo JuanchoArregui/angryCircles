@@ -12,10 +12,11 @@ function AngryGame() {
     this.pointerctive = false;
     this.activeBall = 0;
     this.xGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.ç
-    this.yGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
-    this.bounceRate = 80; // $('#bounceRate').val();     // Bounce rate of the BallangryBall as a percentage. Higher number means more bounce.
+    this.yGravity = 5; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
+    this.bounceRate = 90; // $('#bounceRate').val();     // Bounce rate of the BallangryBall as a percentage. Higher number means more bounce.
     this.friction = 2 ; // $('#friction').val();    // Controls the amount of horizontal friction. Higher number equals more friction.
     this.angryMoving; // we use this to stop the update method with a clearinterval
+    this.gameStopped = false;
 
 
     // we update the sliders
@@ -48,8 +49,8 @@ AngryGame.prototype.setAngryCanvas = function() {
     // Set the max new size for the canvas
     // we calculate the size subtracting the margins established in the design to the size of the window
     var cw = ww - 4*angryModule;
-    var ch = wh - 16*angryModule;
-    $( "#canvas-outfit" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "pink"></canvas>' );
+    var ch = wh - 18*angryModule;
+    $( "#canvas-outfit" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "" ondrop="drop(event);" ondragover="dragOver(event);"></canvas>' );
     $( "#canvas-outfit" ).width(cw);
     $( "#canvas-outfit" ).height(ch);
     console.log("setting new Canvas to " + cw + " x " + ch);
@@ -80,7 +81,7 @@ AngryGame.prototype.draw = function() {
 
     // Clear the canvas.
     this.canvas.clearCanvas();
-    console.log("drawing ");
+    // console.log("drawing ");
      
     var that = this;
      
@@ -107,85 +108,6 @@ AngryGame.prototype.draw = function() {
 }  
 
 
-////////////////////////////////////////////////
-////////  AngryGame BAL MOVEMENT METHOD ////////
-////////////////////////////////////////////////
-AngryGame.prototype.ballMovement = function(ball) {
-    
-      //store the prvious position 
-      this.balls[ball].xPosPrev = this.balls[ball].xPos;
-      this.balls[ball].yPosPrev = this.balls[ball].yPos;
-    
-      //effect of gravity
-      this.balls[ball].xVel += this.xGravity;
-      this.balls[ball].yVel += this.yGravity;
-    
-      //effect of friction
-      this.balls[ball].xVel *= (1 - this.friction / 100);
-      this.balls[ball].yVel *= (1 - this.friction / 100);
-      this.balls[ball].spin *= (1 - this.friction / 100);
-    
-      //new position and spin
-      this.balls[ball].xPos += this.balls[ball].xVel;
-      this.balls[ball].yPos += this.balls[ball].yVel;
-      this.balls[ball].angle += this.balls[ball].spin;
-     
-    };
-
-/////////////////////////////////////////////////////
-////////////  AngryGame BORDER COLLISION METHOD ////////////
-/////////////////////////////////////////////////////
-AngryGame.prototype.borderCollisionDetection = function(ball) {
-    
-//Boundary collision detection and adding effect of speed loss because of collision
-if (this.balls[ball].xPos + this.balls[ball].radius > this.canvas.width() ) {
-    this.balls[ball].xPos = this.canvas.width()-this.balls[ball].radius;
-    console.log("ball num:" + ball + " has collided with the RIGHT border ");
-    this.balls[ball].xVel *= -1 * this.bounceRate / 100;
-        if (this.balls[ball].yPos > this.balls[ball].yPosPrev) {
-            this.balls[ball].spin -= this.balls[ball].yVel*0.1;
-        }
-        else {
-            this.balls[ball].spin += this.balls[ball].yVel*0.1;
-        }
-}
-if ( this.balls[ball].xPos - this.balls[ball].radius < 0 ) {
-    this.balls[ball].xPos = this.balls[ball].radius;
-    console.log("ball num:" + ball + " has collided with the LEFT border ");
-    this.balls[ball].xVel *= -1 * this.bounceRate / 100;
-        if (this.balls[ball].yPos > this.balls[ball].yPosPrev) {
-            this.balls[ball].spin += this.balls[ball].yVel*0.1;
-        }
-        else {
-            this.balls[ball].spin -= this.balls[ball].yVel*0.1;
-        }
-}
-if (this.balls[ball].yPos + this.balls[ball].radius > this.canvas.height() ) {
-    this.balls[ball].yPos = this.canvas.height()-this.balls[ball].radius;
-    console.log("ball num:" + ball + " has collided with the BOTTOM border ");
-    this.balls[ball].yVel *= -1 * this.bounceRate / 100;
-
-        if (this.balls[ball].xPos > this.balls[ball].xPosPrev) {
-            this.balls[ball].spin += this.balls[ball].xVel*0.1;
-        }
-        else {
-            this.balls[ball].spin -= this.balls[ball].xVel*0.1;
-        }
-}
-
-if ( this.balls[ball].yPos - this.balls[ball].radius < 0 ) {
-    this.balls[ball].yPos = this.balls[ball].radius;
-    console.log("ball num:" + ball + " has collided with the TOP border "); 
-    this.balls[ball].yVel *= -1 * this.bounceRate / 100;
-        if (this.balls[ball].xPos > this.balls[ball].xPosPrev) {
-            this.balls[ball].spin -= this.balls[ball].xVel*0.1;
-        }
-        else {
-            this.balls[ball].spin += this.balls[ball].xVel*0.1;
-        }
-}
-
-}
 
 
 ////////////////////////////////////////////////
@@ -195,23 +117,32 @@ AngryGame.prototype.update = function() {
     
     this.angryMoving = setInterval(function(){
 
-        for (var ball=0; ball<this.balls.length ; ball++ ){
-            this.ballMovement(ball);
-            this.borderCollisionDetection(ball);
+        for (var ballIndex=0; ballIndex<this.balls.length ; ballIndex++ ){
+            this.ballMovement(ballIndex);
+            this.borderCollisionDetection(ballIndex);
+            this.ballCollisionDetection(ballIndex);
             }
         this.draw();
-        
 
-        /*
-            if (Math.abs(this.xVel)<1 && Math.abs(this.yVel)<1 ){
-            this.xVel = 0;
-            this.yVel = 0;
-            console.log("PELOTA PARADA!");
-            clearInterval(this.angryMoving);
+            //this is to prevent infinitesimal movements
+            var that = this;
+            this.balls.every ( function (ball) {
+                if (Math.abs(ball.xVel)<1 && Math.abs(ball.yVel)<1 ) {
+                    ball.xVel = 0;
+                    ball.yVel = 0;
+                    that.gameStopped = true;
+                return true;  // seguir con el siguiente elemento
+                
+                } else {
+                    that.gameStopped = false;
+                return false; // terminar el bucle en este elemento
+                }
+            });
+            if (this.gameStopped==true){
+                console.log("ALL THE BALLS ARE STOPPED");
+                clearInterval(this.angryMoving);
             }
-        */
-
-        
+         
     }.bind(this), frameRate);
     
     };
@@ -253,6 +184,4 @@ AngryGame.prototype.pointerEventToXY = function(event){
     }
 };
   
-
-
   
