@@ -74,40 +74,6 @@ AngryGame.prototype.setAngryCanvas = function() {
 }
 
 
-/////////////////////////////////////////////////////
-////////////  AngryGame DRAW METHOD ///////////////
-////////////////////////////////////////////////////
-AngryGame.prototype.draw = function() {
-
-    // Clear the canvas.
-    this.canvas.clearCanvas();
-    // console.log("drawing ");
-     
-    var that = this;
-     
-    for (var i = 0; i<this.balls.length ; i++){
-        this.canvas.drawImage({
-        source: './images/angryBall.png',
-        rotate: that.balls[i].angle,
-        x: that.balls[i].xPos,
-        y: that.balls[i].yPos,
-        width: 2*that.balls[i].radius,
-        height: 2*that.balls[i].radius,
-        });
-    }
-
-    $("#xPos").text(Math.round(this.balls[0].xPos));
-    $("#yPos").text(Math.round(this.balls[0].yPos));
-  
-    $("#xVel").text(Math.round(this.balls[0].xVel));
-    $("#yVel").text(Math.round(this.balls[0].yVel));
-
-    $("#spin").text(Math.round(this.balls[0].spin));
-
-
-}  
-
-
 
 
 ////////////////////////////////////////////////
