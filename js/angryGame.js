@@ -5,14 +5,18 @@ function AngryGame() {
 
     this.canvas = $('#canvas');
     this.balls = [];
+    this.numBalls = 0;
     this.maxNumBalls = 15;
+    this.animations = [];
+    this.tagets = [];
+    this.obstacles = [];
     this.pointerX = 0;
     this.pointerY = 0;
     this.pointerOnBall = false;
     this.pointerctive = false;
     this.activeBall = 0;
-    this.xGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.ç
-    this.yGravity = 5; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
+    this.xGravity = -5; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.ç
+    this.yGravity = 10; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
     this.bounceRate = 90; // $('#bounceRate').val();     // Bounce rate of the BallangryBall as a percentage. Higher number means more bounce.
     this.friction = 2 ; // $('#friction').val();    // Controls the amount of horizontal friction. Higher number equals more friction.
     this.angryMoving; // we use this to stop the update method with a clearinterval
@@ -20,14 +24,18 @@ function AngryGame() {
 
 
     // we update the sliders
-    $('#xGravitySlider').value = this.xGravity;
+    //I dont know why, but jquery doesnt update the slider properly. it work fine with document.getElementById
+    document.getElementById('xGravitySlider').value = this.xGravity;
+    // $('#xGravitySlider').value = this.xGravity;
     $('#xGravitySpan').text(this.xGravity) ;
-    $('#yGravitySlider').value = this.yGravity;
+    document.getElementById('yGravitySlider').value = this.yGravity;
     $('#yGravitySpan').text(this.yGravity) ;
-    $('#bounceRateSlider').value = this.bounceRate;
-    $('#bounceRateSpan').text(this.bounceRate) ;
-    $('#frictionSlider').value = this.friction;
-    $('#frictionSpan').text(this.friction) ;
+
+    document.getElementById('bounceRateSlider').value = this.bounceRate;
+    $('#bounceRateSpan').text(this.bounceRate  + "%") ;
+
+    document.getElementById('frictionSlider').value = this.friction;
+    $('#frictionSpan').text(this.friction + "%") ;
 
 
 }
@@ -73,81 +81,3 @@ AngryGame.prototype.setAngryCanvas = function() {
 
 }
 
-
-
-
-////////////////////////////////////////////////
-///////////  AngryGame UPDATE METHOD /////////
-////////////////////////////////////////////////
-AngryGame.prototype.update = function() {
-    
-    this.angryMoving = setInterval(function(){
-
-        for (var ballIndex=0; ballIndex<this.balls.length ; ballIndex++ ){
-            this.ballMovement(ballIndex);
-            this.borderCollisionDetection(ballIndex);
-            this.ballCollisionDetection(ballIndex);
-            }
-        this.draw();
-
-            //this is to prevent infinitesimal movements
-            var that = this;
-            this.balls.every ( function (ball) {
-                if (Math.abs(ball.xVel)<1 && Math.abs(ball.yVel)<1 ) {
-                    ball.xVel = 0;
-                    ball.yVel = 0;
-                    that.gameStopped = true;
-                return true;  // seguir con el siguiente elemento
-                
-                } else {
-                    that.gameStopped = false;
-                return false; // terminar el bucle en este elemento
-                }
-            });
-            if (this.gameStopped==true){
-                console.log("ALL THE BALLS ARE STOPPED");
-                clearInterval(this.angryMoving);
-            }
-         
-    }.bind(this), frameRate);
-    
-    };
-
-
-////////////////////////////////////////////////
-///////////  AngryGame mouseIsInsideBall METHOD ///////// REVISAR SI SE USA ESTO
-////////////////////////////////////////////////
-AngryGame.prototype.pointerInsideBall = function() {
-
-    for (var i = 0; i<this.balls.length ; i++){
-        var dist = Math.sqrt( Math.pow((this.mouseX - this.balls[i].xPos), 2) + Math.pow((this.mouseY - this.balls[i].yPos), 2) );
-        if (  dist < this.balls[i].radius){
-            inside = true;
-            this.pointerOnBall = true;
-            this.activeBall = i;
-            break;
-        }
-        else{this.pointerOnBall = false;}
-    }
-    return this.pointerOnBall;
-
-}
-
-
-////////////////////////////////////////////////
-/////  AngryGame pointerEventToXY METHOD   /////
-////////////////////////////////////////////////
-AngryGame.prototype.pointerEventToXY = function(event){
-
-    if(event.type == 'touchstart' || event.type == 'touchmove' || event.type == 'touchend' || event.type == 'touchcancel'){
-        var touch = event.originalEvent.touches[0] || event.originalEvent.changedTouches[0];
-        this.pointerX = touch.pageX - this.canvas.position().left;
-        this.pointerY = touch.pageY - this.canvas.position().top;
-    }
-    else if (event.type == 'mousedown' || event.type == 'mouseup' || event.type == 'mousemove' || event.type == 'mouseover'|| event.type=='mouseout' || event.type=='mouseenter' || event.type=='mouseleave') {
-        this.pointerX = event.pageX - this.canvas.position().left;
-        this.pointerY = event.pageY - this.canvas.position().top;
-    }
-};
-  
-  

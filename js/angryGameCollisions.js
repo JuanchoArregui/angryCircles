@@ -4,53 +4,78 @@
 ////////////  AngryGame BORDER COLLISION METHOD ////////////
 /////////////////////////////////////////////////////
 AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
-    
-    //Boundary collision detection and adding effect of speed loss because of collision
+//Boundary collision detection and adding effect of speed loss because of collision
+
+    //RIGHT border collision
     if (this.balls[ballIndex].xPos + this.balls[ballIndex].radius > this.canvas.width() ) {
         this.balls[ballIndex].xPos = this.canvas.width()-this.balls[ballIndex].radius;
-        // console.log("ballIndex num:" + ballIndex + " has collided with the RIGHT border ");
-        this.balls[ballIndex].xVel *= -1 * this.bounceRate / 100;
-            if (this.balls[ballIndex].yPos > this.balls[ballIndex].yPosPrev) {
-                this.balls[ballIndex].spin -= this.balls[ballIndex].yVel*0.1;
+        this.balls[ballIndex].xVel *= -1 * this.bounceRate / 100 ;
+        this.balls[ballIndex].xVel = Math.floor(this.balls[ballIndex].xVel);
+            //this is to prevent endless infinitesimal bouncing when the ball is almost stopped
+            if ( 0 < (this.balls[ballIndex].xVel + this.xGravity) < this.xGravity ) {
+                this.balls[ballIndex].xVel=0;
             }
-            else {
-                this.balls[ballIndex].spin += this.balls[ballIndex].yVel*0.1;
-            }
+        //spin
+        if (this.balls[ballIndex].yPos > this.balls[ballIndex].yPosPrev) {
+            this.balls[ballIndex].spin -= this.balls[ballIndex].yVel*0.1;
+        }
+        else {
+            this.balls[ballIndex].spin += this.balls[ballIndex].yVel*0.1;
+        }
     }
+
+    //LEFT border collision
     if ( this.balls[ballIndex].xPos - this.balls[ballIndex].radius < 0 ) {
         this.balls[ballIndex].xPos = this.balls[ballIndex].radius;
-        // console.log("ballIndex num:" + ballIndex + " has collided with the LEFT border ");
         this.balls[ballIndex].xVel *= -1 * this.bounceRate / 100;
-            if (this.balls[ballIndex].yPos > this.balls[ballIndex].yPosPrev) {
-                this.balls[ballIndex].spin += this.balls[ballIndex].yVel*0.1;
+        this.balls[ballIndex].xVel = Math.floor(this.balls[ballIndex].xVel);
+            //this is to prevent endless infinitesimal bouncing when the ball is almost stopped
+            if ( 0 > (this.balls[ballIndex].xVel + this.xGravity) > this.xGravity) {
+                this.balls[ballIndex].xVel=0;
             }
-            else {
-                this.balls[ballIndex].spin -= this.balls[ballIndex].yVel*0.1;
-            }
+        //spin
+        if (this.balls[ballIndex].yPos > this.balls[ballIndex].yPosPrev) {
+            this.balls[ballIndex].spin += this.balls[ballIndex].yVel*0.1;
+        }
+        else {
+            this.balls[ballIndex].spin -= this.balls[ballIndex].yVel*0.1;
+        }
     }
+
+    //BOTTOM border collision
     if (this.balls[ballIndex].yPos + this.balls[ballIndex].radius > this.canvas.height() ) {
         this.balls[ballIndex].yPos = this.canvas.height()-this.balls[ballIndex].radius;
-        // console.log("ballIndex num:" + ballIndex + " has collided with the BOTTOM border ");
         this.balls[ballIndex].yVel *= -1 * this.bounceRate / 100;
-
-            if (this.balls[ballIndex].xPos > this.balls[ballIndex].xPosPrev) {
-                this.balls[ballIndex].spin += this.balls[ballIndex].xVel*0.1;
+        this.balls[ballIndex].yVel = Math.floor(this.balls[ballIndex].yVel);
+            //this is to prevent endless infinitesimal bouncing when the ball is almost stopped
+            if ( 0 < (this.balls[ballIndex].yVel + this.yGravity) < this.yGravity ) {
+                this.balls[ballIndex].yVel=0;
             }
-            else {
-                this.balls[ballIndex].spin -= this.balls[ballIndex].xVel*0.1;
-            }
+        //spin
+        if (this.balls[ballIndex].xPos > this.balls[ballIndex].xPosPrev) {
+            this.balls[ballIndex].spin += this.balls[ballIndex].xVel*0.1;
+        }
+        else {
+            this.balls[ballIndex].spin -= this.balls[ballIndex].xVel*0.1;
+        }
     }
 
+    //TOP border collision
     if ( this.balls[ballIndex].yPos - this.balls[ballIndex].radius < 0 ) {
         this.balls[ballIndex].yPos = this.balls[ballIndex].radius;
-        // console.log("ballIndex num:" + ballIndex + " has collided with the TOP border "); 
         this.balls[ballIndex].yVel *= -1 * this.bounceRate / 100;
-            if (this.balls[ballIndex].xPos > this.balls[ballIndex].xPosPrev) {
-                this.balls[ballIndex].spin -= this.balls[ballIndex].xVel*0.1;
+        this.balls[ballIndex].yVel = Math.floor(this.balls[ballIndex].yVel);
+            //this is to prevent endless infinitesimal bouncing when the ball is almost stopped
+            if ( 0 > (this.balls[ballIndex].yVel + this.yGravity) > this.yGravity) {
+                this.balls[ballIndex].yVel=0;
             }
-            else {
-                this.balls[ballIndex].spin += this.balls[ballIndex].xVel*0.1;
-            }
+        //spin
+        if (this.balls[ballIndex].xPos > this.balls[ballIndex].xPosPrev) {
+            this.balls[ballIndex].spin -= this.balls[ballIndex].xVel*0.1;
+        }
+        else {
+            this.balls[ballIndex].spin += this.balls[ballIndex].xVel*0.1;
+        }
     }
 
 }

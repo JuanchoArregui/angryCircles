@@ -30,6 +30,18 @@ $(document).ready(function(){
       if ( $(this).hasClass( "is-active" ) ) {
         console.log(" Pausamos  el juego")
         $(this).text(" ► Play");
+          angryGame.canvas.drawText({
+          fillStyle: colorSecondary,
+          x: angryGame.canvas.width()/2, 
+          y: angryGame.canvas.height()/2,
+          fontSize: 90,
+          fontFamily: 'Arial',
+          fontStyle: 'bold',
+          align: 'center',
+          text: 'Game Paused',
+          maxWidth: angryGame.canvas.width()*0.8
+          });
+    
         clearInterval(angryGame.angryMoving)
       }
       else {
@@ -38,30 +50,36 @@ $(document).ready(function(){
         if(angryGame.balls.length===0){
           var angryBall_1 = new AngryBall(100, 100, 50, 12);
           angryGame.balls.push(angryBall_1);
+          angryGame.numBalls = angryGame.balls.length;
         }
         angryGame.update();
       } 
   });
 
+
   //  slider bars
   $('#xGravitySlider').on('input', function () {
     $('#xGravitySpan').text(this.value) ;
-    angryGame.xGravity = this.value;
+    angryGame.xGravity = parseInt(this.value);
+    angryGame.update();
   });
 
   $('#yGravitySlider').on('input', function () {
     $('#yGravitySpan').text(this.value) ;
-    angryGame.yGravity = this.value;
+    angryGame.yGravity = parseInt(this.value);
+    angryGame.update();
   });
 
   $('#bounceRateSlider').on('input', function () {
-    $('#bounceRateSpan').text(this.value) ;
-    angryGame.bounceRate = this.value;
+    $('#bounceRateSpan').text(this.value + "%") ;
+    angryGame.bounceRate = parseInt(this.value);
+    angryGame.update();
   });
 
   $('#frictionSlider').on('input', function () {
-    $('#frictionSpan').text(this.value) ;
-    angryGame.friction = this.value;
+    $('#frictionSpan').text(this.value + "%") ;
+    angryGame.friction = parseInt(this.value);
+    angryGame.update();
   });
 
 })
@@ -87,34 +105,12 @@ $(document).ready(function(){
       text: 'Drag the bouncing AngryBall over the playground and just start playing!',
       maxWidth: angryGame.canvas.width()*0.8
     });
-
-
-  
-  /*
-    // Create new angryBall with 2 balls.
-    var angryBall_1 = new AngryBall();
-      angryBall_1.xPos = 50;
-      angryBall_1.yPos = 50;
-      angryBall_1.xVel = 50;
-      angryBall_1.yVel = 12; 
-  
-    var angryBall_2 = new AngryBall();
-      angryBall_2.xPos = 500;
-      angryBall_2.yPos = 200 ; 
-      angryBall_2.xVel = -15;
-      angryBall_2.yVel = 50; 
-  
-    angryGame.balls.push(angryBall_1);
-    angryGame.balls.push(angryBall_2);
-    angryGame.draw();
-    angryGame.update();
-    */
     
     
 
  
   /////////////////////////////////////////////
-  ////////////   DRAG AND DROP  ///////////////
+  ////////////  LOGO  DRAG AND DROP  ///////////////
   ///////////////////////////////////////////// 
 
   function dragStart(event) {
@@ -137,6 +133,11 @@ $(document).ready(function(){
     var ballName = "angryBall_" + angryGame.balls.length;
     var ballName = new AngryBall(dropX, dropY, 0, 0 );
     angryGame.balls.push(ballName);
+    angryGame.numBalls = angryGame.balls.length;
+      if ( $("#button-play").hasClass( "is-active" ) ) {
+        $("#button-play").toggleClass("is-active");
+        $("#button-play").text(" ▌▌  Pause");
+      }
     angryGame.update();
     
   }
