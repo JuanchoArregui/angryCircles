@@ -205,37 +205,6 @@ h3 {
   margin: 0 25px 0 0;
 }
 
-
-table {
-  /* border-collapse: collapse;
-  width: 60%;
-  max-width: 800px;
-
-  */
-  border: 1px solid black;
-}
-
-th {
-  font-size: 25px;
-  font-weight: bold;
-}
-th, td {
-  height: 15px; /*Aquí el Alto*/
-}
-
-.row1{width: 5%;}
-.row2{width: 10%;}
-.row3{width: 15%;}
-
-.values {
-  color: rgb(184, 184, 184);
-  background: red;
-  font-size: 30px;
-  font-family: Arial;
-  font-weight: bold;
-}
-
-
 .buttonSmall {
   background-color: var(--colorMain);
   font-family: Calibri;
@@ -269,14 +238,77 @@ th, td {
 ///////////////     SLIDER BARS     ////////////////
 ////////////////////////////////////////////////////
 */
+
+table {
+  width: 60%;
+  min-width: 800px;
+  padding: 10px 0;
+  border: solid 2px black;
+  border-radius: 25px;  
+
+}
+
+.tags {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+td {
+  height: 15px; /*Aquí el Alto*/
+  
+}
+
+.textLeft{
+  text-align: left;
+}
+.textCenter{
+  text-align: center;
+}
+.textRight{
+  text-align: right;
+}
+.row1{
+  width: 2%;
+}
+.row2{
+  width: 19%;
+}
+.row4{
+  width: 30%;
+}
+
+.values {
+  color: rgb(184, 184, 184);
+  font-size: 30px;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+
 #slidecontainer {
   width: 100%; /* Width of the outside container */
 }
 
+.rounded{
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 2px solid black;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.rounded:checked {
+  background-color: black;
+}
+
+
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
-  width: 100px; /* Full-width */
   height: 20px; /* Specified height */
   border-radius: 10px;   
   background: #d3d3d3; /* Grey background */
@@ -284,6 +316,12 @@ th, td {
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
+}
+.slider4 {
+  width: 80%; /* Full-width */
+}
+.slider2 {
+  width: 70%; /* Full-width */
 }
 
 /* Mouse-over effects */

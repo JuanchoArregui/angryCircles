@@ -35,46 +35,33 @@
         <table>
             <thead>
                 <tr>
-                    <th class="row1"></th>
-                    <th class="row2">Position</th>
-                    <th class="row2">Speed</th>
-                    <th class="row2">Spin</th>
-                    <th class="row2">Gravity</th>
-                    <th class="row3"></th>
-                    <th class="row3">Bounce Rate</th>
-                    <th class="row3">Friction</th>
+                    <th class="tags row4 textCenter">X Gravity</th>
+                    <th class="tags row4 textCenter">Y Gravity</th>
+                    <th class="tags row1"></th>
+                    <th class="tags row2 textLeft">Bounce Rate</th>
+                    <th class="tags row2 textLeft">Friction</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th> X:</th>
-                    <td id="xPos" class="values" ></td>
-                    <td id="xVel" class="values"></td>
-                    <td id="spin" class="values"></td>
-                    <td id="xGravitySpan" class="values" ></td>
-                    <td> <input id="xGravitySlider" type="range" min="-10" max="10"  class="slider" > </td>
-                    <td> <input id="bounceRateSlider" type="range" min="0" max="100" class="slider" > </td>
-                    <td> <input id="frictionSlider" type="range" min="0" max="100"  class="slider" >   </td>
-
-                  </div>
-
-
-
+                    <td class="textCenter"> <input id="xGravitySlider" type="range" min="-10" max="10" step="1" class="slider slider4" > </td>
+                    <td class="textCenter"> <input id="yGravitySlider"type="range" min="-10" max="10" step="1" class="slider slider4">  </td>
+                    <td></td>
+                    <td> <input id="bounceRateSlider" type="range" min="50" max="100" step="1" class="slider slider2" > </td>
+                    <td> <input id="frictionSlider" type="range" min="0" max="10" step="1" class="slider slider2" >   </td>
                 </tr>
                 <tr>
-                    <th> Y:</th>
-                    <td id="yPos" class="values"></td>
-                    <td id="yVel" class="values"></td>
-                    <td> </td>
-                    <td id="yGravitySpan" class="values" ></td>
-                    <td> <input id="yGravitySlider"type="range" min="-10" max="10"  class="slider">  </td>
-                    <td id="bounceRateSpan" class="values"> </td>
-                    <td id="frictionSpan" class="values"> </td>
+                    <td id="xGravitySpan" class="values textCenter"> </td>
+                    <td id="yGravitySpan" class="values textCenter"> </td>
+                    <td></td>
+                    <td id="bounceRateSpan" class="values textLeft"> </td>
+                    <td id="frictionSpan" class="values textLeft"> </td>
                 </tr>
             </tbody>
         </table>  
 
-            
+        <label class="tags"><input id="showDataOnCanvas" type="checkbox" value="on" checked class="rounded">Show Data</label>
+
         <div>
           <h2>just for square heads</h2>
         </div>

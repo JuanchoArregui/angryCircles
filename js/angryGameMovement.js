@@ -7,7 +7,7 @@ AngryGame.prototype.update = function() {
             for (var ballIndex=0; ballIndex<this.numBalls ; ballIndex++ ){
                 this.ballMovement(ballIndex);
                 this.borderCollisionDetection(ballIndex);
-                this.ballCollisionDetection(ballIndex);
+                // this.ballCollisionDetection(ballIndex);
                 }
             this.draw();
             this.checkIfAllBallsStopped();
@@ -25,19 +25,20 @@ AngryGame.prototype.ballMovement = function(ballIndex) {
       //store the prvious position 
       this.balls[ballIndex].xPosPrev = this.balls[ballIndex].xPos;
       this.balls[ballIndex].yPosPrev = this.balls[ballIndex].yPos;
-      console.log(this.balls[ballIndex].xPos);
-      console.log(this.balls[ballIndex].xVel);
     
-      //effect of gravity
-      this.balls[ballIndex].xVel += this.xGravity;
-      this.balls[ballIndex].yVel += this.yGravity;
-      console.log(this.balls[ballIndex].xVel);
-    
-      //effect of friction
-      this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
-      console.log(this.balls[ballIndex].xVel);
-      this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
-      this.balls[ballIndex].spin = Math.floor( this.balls[ballIndex].spin * (1 - this.friction / 100) );
+      //effect of gravity or friction ()
+      if (this.xGravity === 0 && this.yGravity === 0){
+          console.log("friction");
+        //if there is no gravity then its supposed we are playing in a flat table with the effect of friction
+        this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
+        this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
+        this.balls[ballIndex].spin = Math.floor( this.balls[ballIndex].spin * (1 - this.friction / 100) );
+      }
+      else{
+        //if there is gravity then its supposed we are playing in the air and there is no friction
+        this.balls[ballIndex].xVel += this.xGravity;
+        this.balls[ballIndex].yVel += this.yGravity;
+      }
     
       //new position and spin
       this.balls[ballIndex].xPos += this.balls[ballIndex].xVel;
@@ -80,29 +81,30 @@ AngryGame.prototype.draw = function() {
             width: 2*that.balls[i].radius,
             height: 2*that.balls[i].radius,
             });
-    
-            this.canvas.drawText({
-            fillStyle: colorSecondary,
-            x: that.balls[i].xPos + 75, 
-            y: that.balls[i].yPos + 75,
-            fontSize: 15,
-            fontFamily: 'Arial',
-            fontStyle: 'bold',
-            align: 'left',
-            text: that.balls[i].xPos + ', ' + that.balls[i].yPos
-            });
         }
-    
-        
-    
-        $("#xPos").text(Math.round(this.balls[0].xPos));
-        $("#yPos").text(Math.round(this.balls[0].yPos));
-      
-        $("#xVel").text(Math.round(this.balls[0].xVel));
-        $("#yVel").text(Math.round(this.balls[0].yVel));
-    
-        $("#spin").text(Math.round(this.balls[0].spin));
-    
+        if ( $("#showDataOnCanvas").is(':checked') ){
+            for (var i = 0; i<this.balls.length ; i++){
+                this.canvas.drawRect({
+                fillStyle: 'rgba(255, 255, 255, 0.7)',
+                x: that.balls[i].xPos,
+                y: that.balls[i].yPos,
+                width: 120,
+                height: 50,
+                cornerRadius: 10
+                });
+
+                this.canvas.drawText({
+                fillStyle: colorSecondary,
+                x: that.balls[i].xPos, 
+                y: that.balls[i].yPos,
+                fontSize: 15,
+                fontFamily: 'Arial',
+                fontStyle: 'bold',
+                align: 'center',
+                text: "Pos: "+ that.balls[i].xPos + ', ' + that.balls[i].yPos + "\nVel: " + that.balls[i].xVel + ', ' + that.balls[i].yVel + "\nSpin: " + that.balls[i].spin
+                });
+            }
+        }
     
     }  
     

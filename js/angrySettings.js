@@ -9,7 +9,7 @@ var borderWidth = 25;
 var borderRadius = 100;
 var colorMain = $(':root').css('--colorMain');
 var colorSecondary = $(':root').css('--colorSecondary');
-var frameRate = 1000/24; //frames per second
+var frameRate = 1000/12; //frames per second
 
 
 
@@ -48,7 +48,7 @@ $(document).ready(function(){
         console.log("CONTINUAMOS el juego")
         $(this).text(" ▌▌  Pause");
         if(angryGame.balls.length===0){
-          var angryBall_1 = new AngryBall(100, 100, 50, 12);
+          var angryBall_1 = new AngryBall(100, 100, 50, 50);
           angryGame.balls.push(angryBall_1);
           angryGame.numBalls = angryGame.balls.length;
         }
@@ -131,7 +131,7 @@ $(document).ready(function(){
     var dropX = event.clientX- angryGame.canvas.position().left;
     var dropY = event.clientX- angryGame.canvas.position().top;;
     var ballName = "angryBall_" + angryGame.balls.length;
-    var ballName = new AngryBall(dropX, dropY, 0, 0 );
+    var ballName = new AngryBall(dropX, dropY, 50, 50 );
     angryGame.balls.push(ballName);
     angryGame.numBalls = angryGame.balls.length;
       if ( $("#button-play").hasClass( "is-active" ) ) {

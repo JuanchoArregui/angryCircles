@@ -4,6 +4,8 @@
 function AngryGame() {
 
     this.canvas = $('#canvas');
+    this.canvasWidth;
+    this.canvasHeight;
     this.balls = [];
     this.numBalls = 0;
     this.maxNumBalls = 15;
@@ -15,8 +17,8 @@ function AngryGame() {
     this.pointerOnBall = false;
     this.pointerctive = false;
     this.activeBall = 0;
-    this.xGravity = -5; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.ç
-    this.yGravity = 10; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
+    this.xGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.ç
+    this.yGravity = 5; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.
     this.bounceRate = 90; // $('#bounceRate').val();     // Bounce rate of the BallangryBall as a percentage. Higher number means more bounce.
     this.friction = 2 ; // $('#friction').val();    // Controls the amount of horizontal friction. Higher number equals more friction.
     this.angryMoving; // we use this to stop the update method with a clearinterval
@@ -45,24 +47,33 @@ function AngryGame() {
 /////  AngryGame  SET CANVAS METHOD   ///////////
 /////////////////////////////////////////////////
 
+/*
+IMPORTANT NOTE: I Dont know why but the canvas is not created with integer numbers dimenssions
+For example I enter a height of 750px but the canvas created has 749,9993
+So in order to avoid decimals I will round the numbers and create a new variable to store the rounded dimenssions
+*/
+
 AngryGame.prototype.setAngryCanvas = function() {
     
     // delete previous canvas
     $('#canvas').remove();
 
     // Get the size of the display window to Maximize the width and height of the canvas
-    var ww = window.innerWidth;
-    var wh = window.innerHeight;
-    console.log("inner width x height: " + ww + " x " + wh);
+    var ww = Math.floor(window.innerWidth);
+    var wh = Math.floor(window.innerHeight);
     // Set the max new size for the canvas
     // we calculate the size subtracting the margins established in the design to the size of the window
     var cw = ww - 4*angryModule;
-    var ch = wh - 18*angryModule;
-    $( "#canvas-outfit" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "" ondrop="drop(event);" ondragover="dragOver(event);"></canvas>' );
+    var ch = wh - 14*angryModule;
+    $( "#canvas-outfit" ).append( '<canvas id="canvas" width="' + cw + '" height="' + ch + '" class = "pink" ondrop="drop(event);" ondragover="dragOver(event);"></canvas>' );
     $( "#canvas-outfit" ).width(cw);
     $( "#canvas-outfit" ).height(ch);
-    console.log("setting new Canvas to " + cw + " x " + ch);
     this.canvas = $('#canvas');
+    this.canvasWidth = Math.round( $('#canvas').width() );
+    this.canvasHeight = Math.round( $('#canvas').height() );
+    console.log("NEW CANVAS:" + $('#canvas').width() + " x " + $('#canvas').height() );
+    console.log("medidas redondeadas CANVAS:" + this.canvasWidth + " x " +  this.canvasHeight );
+    angryGame.update();
 
     
     //and we set the listeners associated to thegame's canvas
