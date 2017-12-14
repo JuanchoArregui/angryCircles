@@ -9,7 +9,7 @@ var borderWidth = 25;
 var borderRadius = 100;
 var colorMain = $(':root').css('--colorMain');
 var colorSecondary = $(':root').css('--colorSecondary');
-var frameRate = 1000/12; //frames per second
+var frameRate = 1000/16; //frames per second
 
 
 

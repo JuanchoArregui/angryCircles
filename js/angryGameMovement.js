@@ -8,9 +8,11 @@ AngryGame.prototype.update = function() {
                 this.ballMovement(ballIndex);
                 this.borderCollisionDetection(ballIndex);
                 // this.ballCollisionDetection(ballIndex);
+                this.pointerInsideBall(ballIndex);
                 }
             this.draw();
             this.checkIfAllBallsStopped();
+
         }.bind(this), frameRate);
     }
 };
@@ -22,28 +24,38 @@ AngryGame.prototype.update = function() {
 /////////////////////////////////////////////////////
 AngryGame.prototype.ballMovement = function(ballIndex) {
     
-      //store the prvious position 
-      this.balls[ballIndex].xPosPrev = this.balls[ballIndex].xPos;
-      this.balls[ballIndex].yPosPrev = this.balls[ballIndex].yPos;
-    
-      //effect of gravity or friction ()
-      if (this.xGravity === 0 && this.yGravity === 0){
-          console.log("friction");
-        //if there is no gravity then its supposed we are playing in a flat table with the effect of friction
-        this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
-        this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
-        this.balls[ballIndex].spin = Math.floor( this.balls[ballIndex].spin * (1 - this.friction / 100) );
-      }
-      else{
-        //if there is gravity then its supposed we are playing in the air and there is no friction
-        this.balls[ballIndex].xVel += this.xGravity;
-        this.balls[ballIndex].yVel += this.yGravity;
-      }
-    
-      //new position and spin
-      this.balls[ballIndex].xPos += this.balls[ballIndex].xVel;
-      this.balls[ballIndex].yPos += this.balls[ballIndex].yVel;
-      this.balls[ballIndex].angle += this.balls[ballIndex].spin;
+    //store the prvious position 
+    this.balls[ballIndex].xPosPrev = this.balls[ballIndex].xPos;
+    this.balls[ballIndex].yPosPrev = this.balls[ballIndex].yPos;
+
+
+    //effect of gravity or friction ()
+    if (this.xGravity === 0 && this.yGravity === 0){
+        console.log("friction");
+    //if there is no gravity then its supposed we are playing in a flat table with the effect of friction
+    this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
+    this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
+    this.balls[ballIndex].spin = Math.floor( this.balls[ballIndex].spin * (1 - this.friction / 100) );
+    }
+   /*
+    else if ( !(this.xVel === 0 && ( this.xPos === this.canvasWidth - this.balls[ballIndex].radius || this.xPos === this.balls[ballIndex].radius ))) {
+    console.log("hurraXXXXXXXXXXXXXXX")
+    }
+    else if ( !(this.yVel === 0 && ( this.yPos === this.canvasHeight - this.balls[ballIndex].radius || this.yPos === this.balls[ballIndex].radius ))) {
+    console.log("hurraYYYYYYYYYYYY")
+    }
+    */
+
+    else{
+    //if there is gravity then its supposed we are playing in the air and there is no friction
+    this.balls[ballIndex].xVel += this.xGravity;
+    this.balls[ballIndex].yVel += this.yGravity;
+    }
+
+    //new position and spin
+    this.balls[ballIndex].xPos += this.balls[ballIndex].xVel;
+    this.balls[ballIndex].yPos += this.balls[ballIndex].yVel;
+    this.balls[ballIndex].angle += this.balls[ballIndex].spin;
      
     };
 

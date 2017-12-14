@@ -4,21 +4,29 @@
 ////////////////////////////////////////////////
 ///////////  AngryGame mouseIsInsideBall METHOD ///////// REVISAR SI SE USA ESTO
 ////////////////////////////////////////////////
-AngryGame.prototype.pointerInsideBall = function() {
+AngryGame.prototype.pointerInsideBall = function(ballIndex) {
+
+    var dist = Math.sqrt( Math.pow((this.pointerX - this.balls[ballIndex].xPos), 2) + Math.pow((this.pointerY - this.balls[ballIndex].yPos), 2) );
     
-        for (var i = 0; i<this.balls.length ; i++){
-            var dist = Math.sqrt( Math.pow((this.mouseX - this.balls[i].xPos), 2) + Math.pow((this.mouseY - this.balls[i].yPos), 2) );
-            if (  dist < this.balls[i].radius){
-                inside = true;
-                this.pointerOnBall = true;
-                this.activeBall = i;
-                break;
-            }
-            else{this.pointerOnBall = false;}
-        }
-        return this.pointerOnBall;
-    
+    if ( dist < this.balls[ballIndex].radius ){
+    this.pointerOnBall = true;
+    this.canvas.css('cursor', 'pointer');
+    this.activeBall = ballIndex;
+    console.log("IN");
+    //this.balls[this.activeBall].xPos = this.mouseX;
+    //this.balls[this.activeBall].yPos = this.mouseY;
+
     }
+    else{
+    this.pointerOnBall = false;
+    this.canvas.css('cursor', 'default');
+    this.activeBall = "";
+    }
+
+//console.log("pointer:" + this.pointerOnBall);
+//return this.pointerOnBall;
+    
+}
     
     
 ////////////////////////////////////////////////
@@ -35,6 +43,7 @@ AngryGame.prototype.pointerEventToXY = function(event){
         this.pointerX = event.pageX - this.canvas.position().left;
         this.pointerY = event.pageY - this.canvas.position().top;
     }
+
 };
     
       
