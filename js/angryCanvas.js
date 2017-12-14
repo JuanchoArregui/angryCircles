@@ -11,7 +11,7 @@ So in order to avoid decimals I will round the numbers and create a new variable
 */
 
 AngryGame.prototype.setAngryCanvas = function() {
-    
+
     // delete previous canvas
     $('#canvas').remove();
 
@@ -30,22 +30,30 @@ AngryGame.prototype.setAngryCanvas = function() {
     this.canvasHeight = Math.round( $('#canvas').height() );
     console.log("NEW CANVAS:" + $('#canvas').width() + " x " + $('#canvas').height() );
     console.log("medidas redondeadas CANVAS:" + this.canvasWidth + " x " +  this.canvasHeight );
-    angryGame.update();
+    this.update();
+
 
     
     //and we set the listeners associated to thegame's canvas
-    this.canvas.on('mousedown mouseup mousemove mouseover mouseout touchstart touchmove touchend touchcancel', function(event){
+    this.canvas.on('mousemove mouseover mouseout touchstart touchmove touchend touchcancel', function(event){
         this.pointerEventToXY(event); 
         // console.log(this.pointerX + ', ' + this.pointerY);
-      }.bind(this));
+    }.bind(this));
 
     this.canvas.on('mouseleave', function(event){
         console.log('out of the canvas');
-    });
+    }.bind(this));
 
     this.canvas.on('mouseenter', function(event){
         console.log('entering the canvas');
-    });
+    }.bind(this));
 
-    this.update;
+    this.canvas.on('mousedown', function(){
+        if ( this.pointerOnBall === true){ alert("SIIII") } 
+      }.bind(this));
+  
+    this.canvas.on('mouseup', function(){
+        if (this.pointerOnBall === true){ alert("mouse fueraaa") } 
+      }.bind(this));
+
 }

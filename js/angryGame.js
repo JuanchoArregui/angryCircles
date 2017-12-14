@@ -1,7 +1,8 @@
 ////////////////////////////////////////////////////
 ///////  AngryGame CONSTRUCTOR FUNCTION //////////
 ////////////////////////////////////////////////////
-function AngryGame() {
+class AngryGame {
+constructor() {
 
     this.canvas = $('#canvas');
     this.canvasWidth;
@@ -41,5 +42,6 @@ function AngryGame() {
 
 
 }
+};
 
 

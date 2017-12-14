@@ -20,7 +20,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
             else{
                 this.balls[ballIndex].xVel = -1*Math.floor(this.balls[ballIndex].xVel);
             }
-        /*
+        
         //spin
         if (this.balls[ballIndex].yPos > this.balls[ballIndex].yPosPrev) {
             this.balls[ballIndex].spin -= this.balls[ballIndex].yVel*0.1;
@@ -28,7 +28,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
         else {
             this.balls[ballIndex].spin += this.balls[ballIndex].yVel*0.1;
         }
-        */
+        
     }
 
     //RIGHT border rolling
@@ -48,7 +48,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
             else{
                 this.balls[ballIndex].xVel =-1* Math.floor(this.balls[ballIndex].xVel);
             }
-        /*
+        
         //spin
         if (this.balls[ballIndex].yPos > this.balls[ballIndex].yPosPrev) {
             this.balls[ballIndex].spin += this.balls[ballIndex].yVel*0.1;
@@ -56,7 +56,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
         else {
             this.balls[ballIndex].spin -= this.balls[ballIndex].yVel*0.1;
         }
-        */
+        
     }
 
     //LEFT border rolling
@@ -81,7 +81,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
                 this.balls[ballIndex].yVel = -1*Math.floor(this.balls[ballIndex].yVel);
             }
         
-        /*   
+          
         //spin
         if (this.balls[ballIndex].xPos > this.balls[ballIndex].xPosPrev) {
             this.balls[ballIndex].spin += this.balls[ballIndex].xVel*0.1;
@@ -89,7 +89,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
         else {
             this.balls[ballIndex].spin -= this.balls[ballIndex].xVel*0.1;
         }
-        */
+        
     }
 
     //BOTTOM border rolling
@@ -109,7 +109,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
             else{
                 this.balls[ballIndex].yVel = -1*Math.floor(this.balls[ballIndex].yVel);
             }
-        /*
+        
         //spin
         if (this.balls[ballIndex].xPos > this.balls[ballIndex].xPosPrev) {
             this.balls[ballIndex].spin -= this.balls[ballIndex].xVel*0.1;
@@ -117,7 +117,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
         else {
             this.balls[ballIndex].spin += this.balls[ballIndex].xVel*0.1;
         }
-        */
+        
     }
 
     //TOP border rolling

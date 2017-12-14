@@ -7,7 +7,7 @@ AngryGame.prototype.update = function() {
             for (var ballIndex=0; ballIndex<this.numBalls ; ballIndex++ ){
                 this.ballMovement(ballIndex);
                 this.borderCollisionDetection(ballIndex);
-                // this.ballCollisionDetection(ballIndex);
+                this.ballCollisionDetection(ballIndex);
                 this.pointerInsideBall(ballIndex);
                 }
             this.draw();
