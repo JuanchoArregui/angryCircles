@@ -31,11 +31,6 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
         
     }
 
-    //RIGHT border rolling
-    else if (this.balls[ballIndex].xPos + this.balls[ballIndex].radius === this.canvasWidth ) {
-        this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
-    }
-
 
     //LEFT border collision
     else if ( this.balls[ballIndex].xPos - this.balls[ballIndex].radius < 0 ) {
@@ -59,10 +54,6 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
         
     }
 
-    //LEFT border rolling
-    else if ( this.balls[ballIndex].xPos - this.balls[ballIndex].radius === 0 ) {
-    this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
-    }
 
 // second check Y coordinates:
 
@@ -70,7 +61,7 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
     if (this.balls[ballIndex].yPos > this.canvasHeight - this.balls[ballIndex].radius ) {
         this.balls[ballIndex].yPos = this.canvasHeight-this.balls[ballIndex].radius;
         var kk = this.canvasHeight - this.balls[ballIndex].radius;
-        console.log( "BOTTOM COLLISION: \n Ypos: " + this.balls[ballIndex].yPos + "\n canvasH - radio: " + kk );
+        console.log( "BOTTOM COLLISION");
         this.balls[ballIndex].yVel *= this.bounceRate / 100;
         
             //this is to prevent endless infinitesimal bouncing when the ball is almost stopped
@@ -90,12 +81,6 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
             this.balls[ballIndex].spin -= this.balls[ballIndex].xVel*0.1;
         }
         
-    }
-
-    //BOTTOM border rolling
-    else if (this.balls[ballIndex].yPos === this.canvasHeight - this.balls[ballIndex].radius ) {
-        console.log("rolling");
-        this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
     }
 
     //TOP border collision
@@ -118,11 +103,6 @@ AngryGame.prototype.borderCollisionDetection = function(ballIndex) {
             this.balls[ballIndex].spin += this.balls[ballIndex].xVel*0.1;
         }
         
-    }
-
-    //TOP border rolling
-    else if ( this.balls[ballIndex].yPos - this.balls[ballIndex].radius === 0 ) {
-        this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
     }
 
 }

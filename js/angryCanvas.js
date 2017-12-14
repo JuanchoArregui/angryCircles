@@ -30,8 +30,24 @@ AngryGame.prototype.setAngryCanvas = function() {
     this.canvasHeight = Math.round( $('#canvas').height() );
     console.log("NEW CANVAS:" + $('#canvas').width() + " x " + $('#canvas').height() );
     console.log("medidas redondeadas CANVAS:" + this.canvasWidth + " x " +  this.canvasHeight );
-    this.update();
 
+    if(this.balls.length === 0) {
+        angryGame.canvas.drawText({
+            fillStyle: colorSecondary,
+            x: this.canvas.width()/2, 
+            y: this.canvas.height()/2,
+            fontSize: 90,
+            fontFamily: 'Arial',
+            fontStyle: 'bold',
+            align: 'center',
+            text: 'Drag the bouncing AngryBall over the playground and just start playing!',
+            maxWidth: angryGame.canvas.width()*0.8
+          });
+    }
+    else{
+        this.update();
+    }
+      
 
     
     //and we set the listeners associated to thegame's canvas
