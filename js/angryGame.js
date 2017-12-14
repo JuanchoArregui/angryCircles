@@ -2,16 +2,17 @@
 ///////  AngryGame CONSTRUCTOR FUNCTION //////////
 ////////////////////////////////////////////////////
 class AngryGame {
-constructor() {
 
-    this.canvas = $('#canvas');
+    constructor(canvas, balls=[] ) {
+
+    this.canvas = canvas;
     this.canvasWidth;
     this.canvasHeight;
-    this.balls = [];
+    this.balls = balls;
     this.numBalls = 0;
     this.maxNumBalls = 15;
     this.animations = [];
-    this.tagets = [];
+    this.targets = [];
     this.obstacles = [];
     this.pointerX = 0;
     this.pointerY = 0;

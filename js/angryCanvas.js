@@ -11,7 +11,7 @@ So in order to avoid decimals I will round the numbers and create a new variable
 */
 
 AngryGame.prototype.setAngryCanvas = function() {
-
+    
     // delete previous canvas
     $('#canvas').remove();
 

@@ -20,7 +20,7 @@ $(document).ready(function(){
   /////////////////////////////////////////////
 
   // canvas change size
-  $(window).on('resize', angryGame.setAngryCanvas);
+  $(window).on('resize', (angryGame.setAngryCanvas).bind(angryGame));
 
 
   //  button play/pause
