@@ -12,9 +12,7 @@ AngryGame.prototype.pointerInsideBall = function(ballIndex) {
     this.pointerOnBall = true;
     this.canvas.css('cursor', 'pointer');
     this.activeBall = ballIndex;
-    console.log("IN");
-    //this.balls[this.activeBall].xPos = this.mouseX;
-    //this.balls[this.activeBall].yPos = this.mouseY;
+    // console.log("IN");
 
     }
     else{
@@ -22,9 +20,6 @@ AngryGame.prototype.pointerInsideBall = function(ballIndex) {
     this.canvas.css('cursor', 'default');
     this.activeBall = "";
     }
-
-//console.log("pointer:" + this.pointerOnBall);
-//return this.pointerOnBall;
     
 }
     
@@ -33,6 +28,10 @@ AngryGame.prototype.pointerInsideBall = function(ballIndex) {
 /////  AngryGame pointerEventToXY METHOD   /////
 ////////////////////////////////////////////////
 AngryGame.prototype.pointerEventToXY = function(event){
+
+    //store the prvious position 
+    this.pointerXPrev = this.pointerX;
+    this.pointerYPrev = this.pointerY;
 
     if(event.type == 'touchstart' || event.type == 'touchmove' || event.type == 'touchend' || event.type == 'touchcancel'){
         var touch = event.originalEvent.touches[0] || event.originalEvent.changedTouches[0];

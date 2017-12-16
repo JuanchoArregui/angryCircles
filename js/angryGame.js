@@ -17,7 +17,7 @@ class AngryGame {
     this.pointerX = 0;
     this.pointerY = 0;
     this.pointerOnBall = false;
-    this.pointerctive = false;
+    this.pointerActive = false;
     this.activeBall = 0;
     this.xGravity = 0; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.ç
     this.yGravity = 5; // $('#gravity').val();        // Controls how hard gravity pulls on the BallangryBall.  1 is normal.

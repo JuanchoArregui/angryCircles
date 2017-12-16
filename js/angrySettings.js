@@ -95,19 +95,7 @@ $(document).ready(function(){
 
   angryGame.setAngryCanvas(); 
 
-  angryGame.canvas.drawText({
-      fillStyle: colorSecondary,
-      x: angryGame.canvas.width()/2, 
-      y: angryGame.canvas.height()/2,
-      fontSize: 90,
-      fontFamily: 'Arial',
-      fontStyle: 'bold',
-      align: 'center',
-      text: 'Drag the bouncing AngryBall over the playground and just start playing!',
-      maxWidth: angryGame.canvas.width()*0.8
-    });
-    
-    
+  
 
  
   /////////////////////////////////////////////
@@ -118,6 +106,8 @@ $(document).ready(function(){
     console.log("dragStart");
     // Add the target element's id to the data transfer object
     event.dataTransfer.setData("text/plain", event.target.id);
+
+    angryGame.pointerEventToXY(event); 
   }
 
   function dragOver(event) {

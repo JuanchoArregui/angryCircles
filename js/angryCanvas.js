@@ -57,6 +57,7 @@ AngryGame.prototype.setAngryCanvas = function() {
     }.bind(this));
 
     this.canvas.on('mouseleave', function(event){
+        this.pointerActive = false;
         console.log('out of the canvas');
     }.bind(this));
 
@@ -64,12 +65,19 @@ AngryGame.prototype.setAngryCanvas = function() {
         console.log('entering the canvas');
     }.bind(this));
 
-    this.canvas.on('mousedown', function(){
-        if ( this.pointerOnBall === true){ alert("SIIII") } 
+    this.canvas.on('mousedown touchstart', function(){
+
+        if ( this.pointerOnBall === true ){ 
+        this.pointerActive = true;
+        console.log('click. active = ' + this.pointerActive);
+        } 
       }.bind(this));
   
-    this.canvas.on('mouseup', function(){
-        if (this.pointerOnBall === true){ alert("mouse fueraaa") } 
+    this.canvas.on('mouseup touchend', function(){
+        if (this.pointerOnBall === true){ 
+        this.pointerActive = false;
+        console.log('click end. active = ' + this.pointerActive);
+        } 
       }.bind(this));
 
 }

@@ -7,11 +7,11 @@ AngryGame.prototype.update = function() {
             for (var ballIndex=0; ballIndex<this.numBalls ; ballIndex++ ){
                 this.ballMovement(ballIndex);
                 this.borderCollisionDetection(ballIndex);
-                // this.ballCollisionDetection(ballIndex);
+                this.ballCollisionDetection(ballIndex);
                 this.pointerInsideBall(ballIndex);
                 }
             this.draw();
-            this.checkIfAllBallsStopped();
+           // this.checkIfAllBallsStopped();
 
         }.bind(this), frameRate);
     }
@@ -23,50 +23,62 @@ AngryGame.prototype.update = function() {
 ////////  AngryGame BALLIndex MOVEMENT METHOD ///////
 /////////////////////////////////////////////////////
 AngryGame.prototype.ballMovement = function(ballIndex) {
-    
-    //store the prvious position 
-    this.balls[ballIndex].xPosPrev = this.balls[ballIndex].xPos;
-    this.balls[ballIndex].yPosPrev = this.balls[ballIndex].yPos;
 
-    //if there is no gravity then its supposed we are playing in a flat table with the effect of friction
-    if (this.xGravity === 0 && this.yGravity === 0){
-    console.log("friction");
-    this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
-    this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
-    this.balls[ballIndex].spin = Math.floor( this.balls[ballIndex].spin * (1 - this.friction / 100) );
+    //if we are dragging the ball
+    if ( ballIndex === this.activeBall && this.pointerActive === true ) {
+        this.balls[ballIndex].xPosPrev = this.pointerXPrev;
+        this.balls[ballIndex].yPosPrev = this.pointerYPrev;
+        this.balls[ballIndex].xPos = this.pointerX ;
+        this.balls[ballIndex].yPos = this.pointerY ;  
+        let xVel = frameRate ;
+        this.balls[ballIndex].xVel = this.balls[ballIndex].xPos - this.balls[ballIndex].xPosPrev ;
+        this.balls[ballIndex].yVel = this.balls[ballIndex].yPos - this.balls[ballIndex].yPosPrev ;
+        console.log("xVel: " + this.balls[ballIndex].xVel);
+        
     }
-
-    //rolling on Y axis
-    else if ( (this.balls[ballIndex].xVel === 0 && this.balls[ballIndex].xPos === this.canvasWidth - this.balls[ballIndex].radius) || (this.balls[ballIndex].xVel === 0 && this.balls[ballIndex].xPos === this.balls[ballIndex].radius) ) {
-    console.log("rolling on Y axis");
-    this.balls[ballIndex].yVel += this.yGravity;
-    this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
-    this.balls[ballIndex].spin = (180/Math.PI)*(this.balls[ballIndex].yVel / this.balls[ballIndex].radius);
-
-    }
-
-    // rolling on X axis
-    else if ( (this.balls[ballIndex].yVel === 0 && this.balls[ballIndex].yPos === this.canvasHeight - this.balls[ballIndex].radius) || (this.balls[ballIndex].yVel === 0 && this.balls[ballIndex].yPos === this.balls[ballIndex].radius) ) {
-    console.log("rolling on X axis");
-    this.balls[ballIndex].xVel += this.xGravity;
-    this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
-    this.balls[ballIndex].spin = (180/Math.PI)*(this.balls[ballIndex].xVel / this.balls[ballIndex].radius);
-    console.log(this.balls[ballIndex].spin);
-    }
-
     else{
-    //if there is gravity then its supposed we are playing in the air and there is no friction
-    this.balls[ballIndex].xVel += this.xGravity;
-    this.balls[ballIndex].yVel += this.yGravity;
-    }
+        //store the prvious position 
+        this.balls[ballIndex].xPosPrev = this.balls[ballIndex].xPos;
+        this.balls[ballIndex].yPosPrev = this.balls[ballIndex].yPos;
 
-    //new position and spin
-    this.balls[ballIndex].xPos += this.balls[ballIndex].xVel;
-    this.balls[ballIndex].yPos += this.balls[ballIndex].yVel;
-    this.balls[ballIndex].angle += this.balls[ballIndex].spin;
-     
+        //if there is no gravity then its supposed we are playing in a flat table with the effect of friction
+        if (this.xGravity === 0 && this.yGravity === 0){
+        console.log("friction");
+        this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
+        this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
+        this.balls[ballIndex].spin = Math.floor( this.balls[ballIndex].spin * (1 - this.friction / 100) );
+        }
+
+        //rolling on Y axis
+        else if ( (this.balls[ballIndex].xVel === 0 && this.balls[ballIndex].xPos === this.canvasWidth - this.balls[ballIndex].radius) || (this.balls[ballIndex].xVel === 0 && this.balls[ballIndex].xPos === this.balls[ballIndex].radius) ) {
+        this.balls[ballIndex].yVel += this.yGravity;
+        this.balls[ballIndex].yVel = Math.floor( this.balls[ballIndex].yVel * (1 - this.friction / 100) );
+        this.balls[ballIndex].spin = (180/Math.PI)*(this.balls[ballIndex].yVel / this.balls[ballIndex].radius);
+        console.log("rolling on Y axis");
+        console.log("spin" + this.balls[ballIndex].spin);
+        }
+
+        // rolling on X axis
+        else if ( (this.balls[ballIndex].yVel === 0 && this.balls[ballIndex].yPos === this.canvasHeight - this.balls[ballIndex].radius) || (this.balls[ballIndex].yVel === 0 && this.balls[ballIndex].yPos === this.balls[ballIndex].radius) ) {
+        this.balls[ballIndex].xVel += this.xGravity;
+        this.balls[ballIndex].xVel = Math.floor( this.balls[ballIndex].xVel * (1 - this.friction / 100) );
+        this.balls[ballIndex].spin = (180/Math.PI)*(this.balls[ballIndex].xVel / this.balls[ballIndex].radius);
+        console.log("rolling on X axis");
+        console.log("spin" + this.balls[ballIndex].spin);
+        }
+
+        else{
+        //if there is gravity then its supposed we are playing in the air and there is no friction
+        this.balls[ballIndex].xVel += this.xGravity;
+        this.balls[ballIndex].yVel += this.yGravity;
+        }
+
+        //new position and spin
+        this.balls[ballIndex].xPos += this.balls[ballIndex].xVel;
+        this.balls[ballIndex].yPos += this.balls[ballIndex].yVel;
+        this.balls[ballIndex].angle += this.balls[ballIndex].spin;
     };
-
+}
 
 
     
