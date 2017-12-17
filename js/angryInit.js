@@ -22,6 +22,27 @@ $(document).ready(function(){
   // canvas change size
   $(window).on('resize', (angryGame.setAngryCanvas).bind(angryGame));
 
+  // device orientation
+  window.addEventListener('deviceorientation', handleOrientation, true);
+
+
+  if (window.DeviceMotionEvent) {
+    console.log('cambio orientación dispositivo')
+    } else { 
+    console.log('Tu dispositivo no es compatible');
+    }
+    
+    function handleOrientation(event) {
+      let x = Math.round( event.beta ); // ranging from -180 to 180
+      let y = Math.round( event.gamma ); // ranging from -90 to 90.
+      let z = Math.round( event.alpha ); // ranging from 0 to 360
+      console.log(`x: ${x}`);
+      console.log(`y: ${y}`);
+      console.log(`z: ${z}`);
+    }
+
+
+
 
   //  button play/pause
   $("#button-play").click(function(){
